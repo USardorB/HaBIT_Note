@@ -13,6 +13,7 @@ class PageItem extends StatelessWidget {
         SvgPicture.asset(
           item.assetPath,
         ),
+        const SizedBox(height: 4),
         ListTile(
           contentPadding: const EdgeInsets.symmetric(horizontal: 40),
           title: Text(item.title),
