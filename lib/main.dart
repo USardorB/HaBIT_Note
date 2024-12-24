@@ -1,20 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:habit_note/dependency_injection.dart';
+import 'package:habit_note/habit_note_app.dart';
 
 void main() {
+  initializeGetIt();
   runApp(const MainApp());
-}
-
-class MainApp extends StatelessWidget {
-  const MainApp({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return const MaterialApp(
-      home: Scaffold(
-        body: Center(
-          child: Text('Hello World!'),
-        ),
-      ),
-    );
-  }
 }

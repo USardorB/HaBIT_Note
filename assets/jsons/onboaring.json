@@ -1,0 +1,22 @@
+{
+    "items": [
+        {
+            "id": "0",
+            "title": "Take Notes",
+            "subtitle": "Quickly capture what’s on your mind",
+            "asset_path": "assets/images/onboarding_1.svg"
+        },
+        {
+            "id": "1",
+            "title": "To-dos",
+            "subtitle": "List out your day-to-day tasks",
+            "asset_path": "assets/images/onboarding_2.svg"
+        },
+        {
+            "id": "2",
+            "title": "Image to Text Converter",
+            "subtitle": "Upload your images and convert to text",
+            "asset_path": "assets/images/onboarding_3.svg"
+        }
+    ]
+}
