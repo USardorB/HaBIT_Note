@@ -1,16 +1,36 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:habit_note/core/extensions/build_context.dart';
 import 'package:habit_note/dependency_injection.dart';
 import 'package:habit_note/features/onboarding/presentation/controllers/onboarding_cubit.dart';
+import 'package:habit_note/features/onboarding/presentation/widgets/page_indicator.dart';
 import 'package:habit_note/features/onboarding/presentation/widgets/page_item.dart';
 
-class OnboardingPage extends StatelessWidget {
+class OnboardingPage extends StatefulWidget {
   const OnboardingPage({super.key});
 
   @override
+  State<OnboardingPage> createState() => _OnboardingPageState();
+}
+
+class _OnboardingPageState extends State<OnboardingPage> {
+  late final PageController _controller;
+  int selectedIndex = 0;
+  @override
+  void initState() {
+    super.initState();
+    _controller = PageController();
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    final controller = PageController();
     return Scaffold(
       appBar: AppBar(),
       drawer: const Drawer(),
@@ -28,52 +48,38 @@ class OnboardingPage extends StatelessWidget {
               listener: (context, state) {
                 _showSnackbarOnError(state.error, context);
               },
-              builder: (context, state) {
-                final items = state.items;
-                return PageView(
-                  controller: controller,
-                  children: items.map((e) => PageItem(item: e)).toList(),
-                );
-              },
-            ),
-          ),
-        ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: List.generate(
-            3,
-            (index) => AnimatedContainer(
-              duration: Durations.medium3,
-              width: 65,
-              height: 16,
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(100),
+              builder: (context, state) => PageView(
+                controller: _controller,
+                onPageChanged: (value) => setState(() => selectedIndex = value),
+                children: state.items.map((e) {
+                  return PageItem(item: e);
+                }).toList(),
               ),
             ),
           ),
         ),
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 36),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
-              ElevatedButton(
-                onPressed: () {},
-                style: ElevatedButton.styleFrom(
-                  foregroundColor:
-                      Theme.of(context).colorScheme.surfaceContainerLow,
-                  backgroundColor: Theme.of(context).primaryColor,
-                ),
-                child: const Text('CREATE ACCOUNT'),
-              ),
-              const SizedBox(height: 24),
-              ElevatedButton(
-                onPressed: () {},
-                child: const Text('LOG IN'),
-              ),
-            ],
+        PageViewIndicator(selectedIndex: selectedIndex),
+        _buildButtons(context),
+      ]),
+    );
+  }
+
+  Padding _buildButtons(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 36),
+      child: Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
+        ElevatedButton(
+          onPressed: () => context.push('/register'),
+          child: const Text('CREATE ACCOUNT'),
+        ),
+        const SizedBox(height: 24),
+        ElevatedButton(
+          onPressed: () => context.push('/login'),
+          style: ElevatedButton.styleFrom(
+            foregroundColor: Theme.of(context).colorScheme.primary,
+            backgroundColor: Theme.of(context).colorScheme.surfaceContainerLow,
           ),
+          child: const Text('LOG IN'),
         ),
       ]),
     );

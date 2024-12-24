@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:habit_note/features/onboarding/presentation/pages/onboarding_page.dart';
+import 'package:habit_note/app_router.dart';
 
 class MainApp extends StatefulWidget {
   const MainApp({super.key});
@@ -11,8 +11,10 @@ class MainApp extends StatefulWidget {
 class _MainAppState extends State<MainApp> {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return MaterialApp.router(
       title: 'HaBIT_Note',
+      routerConfig: goRouter,
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
           colorScheme: const ColorScheme.light().copyWith(
             surface: const Color(0xFFF1F1F1),
@@ -39,10 +41,11 @@ class _MainAppState extends State<MainApp> {
           ),
           elevatedButtonTheme: ElevatedButtonThemeData(
             style: ElevatedButton.styleFrom(
+              foregroundColor: const Color(0xFFFFFFFF),
+              backgroundColor: const Color(0xFFFFB347),
               padding: const EdgeInsets.all(18),
             ),
           )),
-      home: const OnboardingPage(),
       builder: (context, child) {
         return MediaQuery(
           data: MediaQuery.of(context).copyWith(
