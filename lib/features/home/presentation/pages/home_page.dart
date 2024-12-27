@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:habit_note/features/home/presentation/pages/home_view.dart';
 
 class HomePage extends StatelessWidget {
   static Route get route => MaterialPageRoute(
@@ -10,6 +11,7 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: ColorScheme.of(context).surfaceContainerLow,
+      body: const HomeView(),
       bottomNavigationBar: ClipRRect(
         borderRadius: const BorderRadius.vertical(top: Radius.circular(30)),
         child: NavigationBar(
