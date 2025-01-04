@@ -1,15 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-import 'package:habit_note/core/const/asset_consts.dart';
 
-class HomeView extends StatelessWidget {
-  const HomeView({super.key});
+class OCRView extends StatelessWidget {
+  const OCRView({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Notes'),
+        title: const Text('OCR'),
         // TODO make this dynamic/programmatic
         backgroundColor: Colors.white,
         actions: [
@@ -26,18 +24,18 @@ class HomeView extends StatelessWidget {
           ),
         ],
       ),
-      body: Column(
+      body: const Column(
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          const Spacer(flex: 5),
-          SvgPicture.asset(kAssetNoNote),
-          const Spacer(),
-          const Text(
+          Spacer(flex: 5),
+          Placeholder(),
+          Spacer(),
+          Text(
             'Create your first note !',
             textAlign: TextAlign.center,
           ),
-          const Spacer(flex: 5),
+          Spacer(flex: 5),
         ],
       ),
     );
