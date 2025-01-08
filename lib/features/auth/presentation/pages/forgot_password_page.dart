@@ -26,7 +26,11 @@ class _CreateAccountPageState extends State<ForgotPasswordPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Forgot Password')),
+      backgroundColor: ColorScheme.of(context).secondary,
+      appBar: AppBar(
+        title: const Text('Forgot Password'),
+        backgroundColor: ColorScheme.of(context).secondary,
+      ),
       body: Padding(
         padding: const EdgeInsets.all(40),
         child: Column(

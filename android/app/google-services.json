@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "183754863095",
+    "project_id": "habit-note-4425",
+    "storage_bucket": "habit-note-4425.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:183754863095:android:9e01b0ba7d3a5c7c5e3ef2",
+        "android_client_info": {
+          "package_name": "dev.usardor.habit_note"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAAgfs_EwkFt3R9StmCmLsThiHLXArLMBA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

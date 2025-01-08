@@ -31,7 +31,11 @@ class _CreateAccountPageState extends State<LogInPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Create Account')),
+      backgroundColor: ColorScheme.of(context).secondary,
+      appBar: AppBar(
+        title: const Text('Create Account'),
+        backgroundColor: ColorScheme.of(context).secondary,
+      ),
       body: Padding(
         padding: const EdgeInsets.all(40),
         child: Column(
@@ -81,7 +85,7 @@ class _CreateAccountPageState extends State<LogInPage> {
             ),
             const Spacer(flex: 12),
             ElevatedButton(
-              onPressed: () => context.go('/app'),
+              onPressed: () => context.go('/notes'),
               child: const Text('LOG IN'),
             ),
             const Spacer(flex: 16),

@@ -37,7 +37,11 @@ class _CreateAccountPageState extends State<CreateAccountPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Create Account')),
+      backgroundColor: ColorScheme.of(context).secondary,
+      appBar: AppBar(
+        title: const Text('Create Account'),
+        backgroundColor: ColorScheme.of(context).secondary,
+      ),
       body: Padding(
         padding: const EdgeInsets.all(40),
         child: Column(

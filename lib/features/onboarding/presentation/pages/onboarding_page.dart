@@ -32,7 +32,8 @@ class _OnboardingPageState extends State<OnboardingPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
+      backgroundColor: ColorScheme.of(context).secondary,
+      appBar: AppBar(backgroundColor: ColorScheme.of(context).secondary),
       drawer: const Drawer(),
       body: Column(spacing: 25, children: [
         const ListTile(

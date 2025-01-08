@@ -21,7 +21,7 @@ class OnboardingRepositoryImpl implements OnboardingRepository {
               ))
           .toList());
     } catch (e) {
-      return Left(InternalFailure());
+      return const Left(Failure.unknown);
     }
   }
 }

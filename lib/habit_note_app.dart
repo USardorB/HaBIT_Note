@@ -17,11 +17,11 @@ class _MainAppState extends State<MainApp> {
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         colorScheme: const ColorScheme.light().copyWith(
-          surface: const Color(0xFFF1F1F1),
-          onSurface: const Color(0xFF000000),
+          // surface: const Color(0xFFF1F1F1),
           primary: const Color(0xFFFFB347),
           outline: const Color(0x88000000),
           surfaceContainerLow: const Color(0xFFFFFFFF),
+          secondary: const Color(0xFFF1F1F1),
         ),
         textTheme: TextTheme.of(context).copyWith(
           bodyLarge: TextTheme.of(context).bodyLarge?.copyWith(
