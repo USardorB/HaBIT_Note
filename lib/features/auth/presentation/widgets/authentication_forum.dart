@@ -82,7 +82,7 @@ class _AuthForumState extends State<AuthForum> {
             decoration: InputDecoration(
               hintText: 'Confirm Password',
               prefixIcon: Icon(
-                Icons.person_outline,
+                Icons.lock_outline,
                 color: ColorScheme.of(context).primary,
               ),
             ),
@@ -116,8 +116,9 @@ class _AuthForumState extends State<AuthForum> {
   String? _validatePassword(value) {
     final password = widget.password.text;
     final confirmation = widget.rePassword?.text;
-    if (password != confirmation) return 'The passwords do not match';
     if (password.length < 6) return 'Weak password';
+    if (confirmation == null) return null;
+    if (password != confirmation) return 'The passwords do not match';
     return null;
   }
 }

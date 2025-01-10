@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:developer';
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 
@@ -40,7 +41,10 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   ) async {
     final resp = await _initialize();
     resp.fold(
-      (l) => emit(state.copyWith(error: l.msg)),
+      (l) {
+        log('Error when initializing Auth Bloc');
+        emit(state.copyWith(error: l.msg));
+      },
       (r) {
         if (r != null) {
           emit(AuthState(
@@ -49,7 +53,9 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
             photo: r.photo,
             status: AuthStatus.registered,
           ));
+          log('Auth bloc has been initialized and a user found');
         } else {
+          log('Auth bloc has been initialized but no user is found');
           emit(state.copyWith(status: AuthStatus.none));
         }
       },

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:habit_note/features/auth/presentation/controllers/auth_bloc.dart';
 import 'package:habit_note/features/auth/presentation/widgets/authentication_forum.dart';
 
 class LogInPage extends StatefulWidget {
@@ -33,7 +35,7 @@ class _CreateAccountPageState extends State<LogInPage> {
     return Scaffold(
       backgroundColor: ColorScheme.of(context).secondary,
       appBar: AppBar(
-        title: const Text('Create Account'),
+        title: const Text('Log in'),
         backgroundColor: ColorScheme.of(context).secondary,
       ),
       body: Padding(
@@ -85,7 +87,14 @@ class _CreateAccountPageState extends State<LogInPage> {
             ),
             const Spacer(flex: 12),
             ElevatedButton(
-              onPressed: () => context.go('/notes'),
+              onPressed: () {
+                // context.go('/notes');
+                if (!(_forumKey.currentState?.validate() ?? false)) return;
+                context.read<AuthBloc>().add(AuthSignIn(
+                      email: _email.text,
+                      password: _password.text,
+                    ));
+              },
               child: const Text('LOG IN'),
             ),
             const Spacer(flex: 16),

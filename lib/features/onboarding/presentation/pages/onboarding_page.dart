@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:habit_note/core/extensions/build_context.dart';
+import 'package:habit_note/core/shared/navigator_service.dart';
 import 'package:habit_note/dependency_injection.dart';
 import 'package:habit_note/features/onboarding/presentation/controllers/onboarding_cubit.dart';
 import 'package:habit_note/features/onboarding/presentation/widgets/page_indicator.dart';
@@ -70,12 +71,12 @@ class _OnboardingPageState extends State<OnboardingPage> {
       padding: const EdgeInsets.symmetric(horizontal: 36),
       child: Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
         ElevatedButton(
-          onPressed: () => context.push('/register'),
+          onPressed: () => context.push(NavigatorService.createAccountPath),
           child: const Text('CREATE ACCOUNT'),
         ),
         const SizedBox(height: 24),
         ElevatedButton(
-          onPressed: () => context.push('/login'),
+          onPressed: () => context.push(NavigatorService.loginPath),
           style: ElevatedButton.styleFrom(
             foregroundColor: Theme.of(context).colorScheme.primary,
             backgroundColor: Theme.of(context).colorScheme.surfaceContainerLow,

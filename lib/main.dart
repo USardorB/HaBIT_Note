@@ -4,5 +4,6 @@ import 'package:habit_note/habit_note_app.dart';
 
 void main() {
   initializeGetIt();
+  WidgetsFlutterBinding.ensureInitialized();
   runApp(const MainApp());
 }

@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:habit_note/core/shared/navigator_service.dart';
+import 'package:habit_note/features/auth/presentation/controllers/auth_bloc.dart';
 import 'package:habit_note/features/auth/presentation/widgets/authentication_forum.dart';
 
 class CreateAccountPage extends StatefulWidget {
@@ -65,7 +68,7 @@ class _CreateAccountPageState extends State<CreateAccountPage> {
             Align(
               alignment: const Alignment(-1, 0),
               child: InkWell(
-                onTap: () {},
+                onTap: () => context.push(NavigatorService.loginPath),
                 child: Text(
                   'Login here',
                   style: TextStyle(
@@ -97,9 +100,11 @@ class _CreateAccountPageState extends State<CreateAccountPage> {
             const Spacer(flex: 1),
             ElevatedButton(
               onPressed: () {
-                if (_forumKey.currentState?.validate() ?? false) {
-                  context.push('/authenticate');
-                }
+                if (!(_forumKey.currentState?.validate() ?? false)) return;
+                context.read<AuthBloc>().add(AuthSignIn(
+                      email: _email.text,
+                      password: _password.text,
+                    ));
               },
               child: const Text('CREATE ACCOUNT'),
             ),
