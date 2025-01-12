@@ -2,13 +2,14 @@ import 'dart:async';
 import 'dart:developer';
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
+import 'package:flutter/material.dart';
 
 import '../../domain/usecases/usecases.dart';
 
 part 'auth_event.dart';
 part 'auth_state.dart';
 
-class AuthBloc extends Bloc<AuthEvent, AuthState> {
+class AuthBloc extends Bloc<AuthEvent, AuthState> with ChangeNotifier {
   final ConfirmPasswordReset _reset;
   final Initialize _initialize;
   final SendEmailVerification _emailVerification;
@@ -35,31 +36,34 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     on<AuthConfirmPasswordReset>(_onConfirm);
   }
 
+  @override
+  void onChange(Change<AuthState> change) {
+    super.onChange(change);
+    notifyListeners();
+  }
+
   FutureOr<void> _onInit(
     AuthInitialize event,
     Emitter<AuthState> emit,
   ) async {
     final resp = await _initialize();
-    resp.fold(
-      (l) {
-        log('Error when initializing Auth Bloc');
-        emit(state.copyWith(error: l.msg));
-      },
-      (r) {
-        if (r != null) {
-          emit(AuthState(
-            email: r.email,
-            name: r.name,
-            photo: r.photo,
-            status: AuthStatus.registered,
-          ));
-          log('Auth bloc has been initialized and a user found');
-        } else {
-          log('Auth bloc has been initialized but no user is found');
-          emit(state.copyWith(status: AuthStatus.none));
-        }
-      },
-    );
+    resp.fold((l) {
+      log('Error when initializing Auth Bloc');
+      emit(state.copyWith(error: l.msg));
+    }, (r) {
+      if (r != null) {
+        emit(AuthState(
+          email: r.email,
+          name: r.name,
+          photo: r.photo,
+          status: AuthStatus.registered,
+        ));
+        log('Auth bloc has been initialized and a user found');
+      } else {
+        log('Auth bloc has been initialized but no user is found');
+        emit(state.copyWith(status: AuthStatus.none));
+      }
+    });
   }
 
   FutureOr<void> _onSignIn(
@@ -68,17 +72,18 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   ) async {
     emit(state.copyWith(isLoading: true));
     final resp = await _signIn(param: (event.email, event.password));
-    resp.fold(
-      (l) => emit(state.copyWith(error: l.msg)),
-      (r) {
-        emit(AuthState(
-          email: r.email,
-          name: r.name,
-          photo: r.photo,
-          status: AuthStatus.registered,
-        ));
-      },
-    );
+    resp.fold((l) {
+      log(l.msg);
+      emit(state.copyWith(error: l.msg));
+    }, (r) {
+      log('successfully signedIn');
+      emit(AuthState(
+        email: r.email,
+        name: r.name,
+        photo: r.photo,
+        status: AuthStatus.registered,
+      ));
+    });
   }
 
   FutureOr<void> _onSignUp(
@@ -91,17 +96,18 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       event.password,
       event.name,
     ));
-    resp.fold(
-      (l) => emit(state.copyWith(error: l.msg)),
-      (r) {
-        emit(AuthState(
-          email: r.email,
-          name: r.name,
-          photo: r.photo,
-          status: AuthStatus.registered,
-        ));
-      },
-    );
+    resp.fold((l) {
+      log(l.msg);
+      emit(state.copyWith(error: l.msg));
+    }, (r) {
+      log('successfully signedUp');
+      emit(AuthState(
+        email: r.email,
+        name: r.name,
+        photo: r.photo,
+        status: AuthStatus.registered,
+      ));
+    });
   }
 
   FutureOr<void> _onSignOut(
@@ -110,12 +116,11 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   ) async {
     emit(state.copyWith(isLoading: true));
     final resp = await _signOut();
-    resp.fold(
-      (l) => emit(state.copyWith(error: l.msg)),
-      (r) {
-        emit(AuthState._initial().copyWith(status: AuthStatus.none));
-      },
-    );
+    resp.fold((l) {
+      emit(state.copyWith(error: l.msg));
+    }, (r) {
+      emit(AuthState._initial().copyWith(status: AuthStatus.none));
+    });
   }
 
   FutureOr<void> _onPasswordReset(
@@ -124,10 +129,11 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   ) async {
     emit(state.copyWith(isLoading: true));
     final resp = await _passwordReset(param: event.email);
-    resp.fold(
-      (l) => emit(state.copyWith(error: l.msg)),
-      (r) => emit(state.copyWith()),
-    );
+    resp.fold((l) {
+      emit(state.copyWith(error: l.msg));
+    }, (r) {
+      emit(state.copyWith());
+    });
   }
 
   FutureOr<void> _onVerify(
@@ -136,10 +142,11 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   ) async {
     emit(state.copyWith(isLoading: true));
     final resp = await _emailVerification();
-    resp.fold(
-      (l) => emit(state.copyWith(error: l.msg)),
-      (r) => emit(state.copyWith()),
-    );
+    resp.fold((l) {
+      emit(state.copyWith(error: l.msg));
+    }, (r) {
+      emit(state.copyWith());
+    });
   }
 
   FutureOr<void> _onConfirm(
@@ -148,9 +155,10 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   ) async {
     emit(state.copyWith(isLoading: true));
     final resp = await _reset(param: (event.code, event.email));
-    resp.fold(
-      (l) => emit(state.copyWith(error: l.msg)),
-      (r) => emit(state.copyWith()),
-    );
+    resp.fold((l) {
+      emit(state.copyWith(error: l.msg));
+    }, (r) {
+      emit(state.copyWith());
+    });
   }
 }

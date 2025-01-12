@@ -11,39 +11,29 @@ import 'package:habit_note/features/me/presentation/pages/help_view.dart';
 import 'package:habit_note/features/me/presentation/pages/me_view.dart';
 import 'package:habit_note/features/notes/presentation/pages/notes_page.dart';
 import 'package:habit_note/features/ocr/presentation/pages/ocr_page.dart';
-import 'package:habit_note/features/onboarding/onboarding_route.dart';
+import 'package:habit_note/features/onboarding/presentation/pages/onboarding_page.dart';
 
 final goRouter = GoRouter(
   routes: [
+    GoRoute(
+      path: NavigatorService.splashScreenPath,
+      name: NavigatorService.splashScreenName,
+      builder: (context, state) => const SplashScreenPage(),
+    ),
+    GoRoute(
+      path: NavigatorService.createAccountPath,
+      name: NavigatorService.createAccountName,
+      builder: (context, state) => const CreateAccountPage(),
+    ),
     GoRoute(
       path: NavigatorService.onboardingPath,
       name: NavigatorService.onboardingName,
       builder: (context, state) => const OnboardingPage(),
     ),
     GoRoute(
-      path: NavigatorService.splashScreenPath,
-      name: NavigatorService.splashScreenName,
-      builder: (context, state) => BlocProvider(
-        create: (context) => sl<AuthBloc>()..add(const AuthInitialize()),
-        lazy: false,
-        child: const SplashScreenPage(),
-      ),
-    ),
-    GoRoute(
-      path: NavigatorService.createAccountPath,
-      name: NavigatorService.createAccountName,
-      builder: (context, state) => BlocProvider(
-        create: (context) => sl<AuthBloc>(),
-        child: const CreateAccountPage(),
-      ),
-    ),
-    GoRoute(
       path: NavigatorService.loginPath,
       name: NavigatorService.loginName,
-      builder: (context, state) => BlocProvider(
-        create: (context) => sl<AuthBloc>(),
-        child: const LogInPage(),
-      ),
+      builder: (context, state) => const LogInPage(),
     ),
     GoRoute(
       path: NavigatorService.authenticatePath,
@@ -59,7 +49,7 @@ final goRouter = GoRouter(
       builder: (context, state, child) => HomePage(child: child),
       routes: [
         GoRoute(
-          path: NavigatorService.ocrPath,
+          path: NavigatorService.notesPath,
           name: NavigatorService.notesName,
           builder: (context, state) => const NotesPage(),
         ),
@@ -81,6 +71,15 @@ final goRouter = GoRouter(
       ],
     ),
   ],
+  refreshListenable: sl<AuthBloc>(),
+  redirect: (context, state) {
+    final authState = context.watch<AuthBloc>().state.status;
+    return switch (authState) {
+      AuthStatus.initial => NavigatorService.splashScreenPath,
+      AuthStatus.registered => NavigatorService.notesPath,
+      AuthStatus.none => NavigatorService.onboardingPath
+    };
+  },
   initialLocation: NavigatorService.splashScreenPath,
   debugLogDiagnostics: kDebugMode,
 );

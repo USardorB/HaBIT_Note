@@ -77,6 +77,7 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
         email: email,
         password: password,
       );
+      // await Future.delayed(const Duration(seconds: 2));
       return UserModel.fromFirebase(FirebaseAuth.instance.currentUser!);
     } on FirebaseAuthException catch (e) {
       throw switch (e.code) {
@@ -163,6 +164,7 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
       await Firebase.initializeApp(
         options: DefaultFirebaseOptions.currentPlatform,
       );
+      // await Future.delayed(const Duration(seconds: 2));
       final user = FirebaseAuth.instance.currentUser;
       if (user != null) return UserModel.fromFirebase(user);
       return null;

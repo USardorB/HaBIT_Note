@@ -42,7 +42,7 @@ void _regAuth() {
   sl.registerLazySingleton(() => SignIn(sl()));
   sl.registerLazySingleton(() => SignOut(sl()));
   sl.registerLazySingleton(() => SignUp(sl()));
-  sl.registerFactory(() => AuthBloc(
+  sl.registerLazySingleton(() => AuthBloc(
         sl(),
         sl(),
         sl(),

@@ -101,9 +101,10 @@ class _CreateAccountPageState extends State<CreateAccountPage> {
             ElevatedButton(
               onPressed: () {
                 if (!(_forumKey.currentState?.validate() ?? false)) return;
-                context.read<AuthBloc>().add(AuthSignIn(
+                context.read<AuthBloc>().add(AuthSignUp(
                       email: _email.text,
                       password: _password.text,
+                      name: _name.text,
                     ));
               },
               child: const Text('CREATE ACCOUNT'),

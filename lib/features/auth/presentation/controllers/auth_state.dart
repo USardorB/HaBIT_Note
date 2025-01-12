@@ -41,7 +41,14 @@ final class AuthState extends Equatable {
   }
 
   @override
-  List<Object?> get props => [email, name, photo, status, error, isLoading];
+  List<Object> get props => [
+        email,
+        name,
+        photo ?? '',
+        status,
+        error ?? '',
+        isLoading,
+      ];
 }
 
 enum AuthStatus { initial, registered, none }

@@ -1,6 +1,8 @@
 class NavigatorService {
   static const String splashScreenPath = '/';
   static const String splashScreenName = 'SplashScreen';
+  // static const String rootPagePath = '/';
+  // static const String rootPageName = 'Root Page';
   static const String createAccountPath = '/onboarding/register';
   static const String createAccountName = 'Create Account';
   static const String onboardingPath = '/onboarding';
