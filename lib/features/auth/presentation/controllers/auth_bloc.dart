@@ -2,14 +2,13 @@ import 'dart:async';
 import 'dart:developer';
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:flutter/material.dart';
 
 import '../../domain/usecases/usecases.dart';
 
 part 'auth_event.dart';
 part 'auth_state.dart';
 
-class AuthBloc extends Bloc<AuthEvent, AuthState> with ChangeNotifier {
+class AuthBloc extends Bloc<AuthEvent, AuthState> {
   final ConfirmPasswordReset _reset;
   final Initialize _initialize;
   final SendEmailVerification _emailVerification;
@@ -39,7 +38,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> with ChangeNotifier {
   @override
   void onChange(Change<AuthState> change) {
     super.onChange(change);
-    notifyListeners();
+    if (change.currentState.status == change.nextState.status) return;
   }
 
   FutureOr<void> _onInit(

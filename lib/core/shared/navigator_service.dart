@@ -1,17 +1,15 @@
 class NavigatorService {
   static const String splashScreenPath = '/';
   static const String splashScreenName = 'SplashScreen';
-  // static const String rootPagePath = '/';
-  // static const String rootPageName = 'Root Page';
-  static const String createAccountPath = '/onboarding/register';
+  static const String createAccountPath = '/register';
   static const String createAccountName = 'Create Account';
   static const String onboardingPath = '/onboarding';
   static const String onboardingName = 'Onboarding';
-  static const String loginPath = '/onboarding/login';
+  static const String loginPath = '/login';
   static const String loginName = 'Log In';
-  static const String authenticatePath = '/onboarding/authenticate';
+  static const String authenticatePath = '/authenticate';
   static const String authenticateName = 'Verify Email';
-  static const String recoveryPath = '/onboarding/recovery';
+  static const String recoveryPath = '/recovery';
   static const String recoveryName = 'Forgot password';
   static const String notesName = 'Notes';
   static const String notesPath = '/notes';

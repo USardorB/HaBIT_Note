@@ -4,7 +4,6 @@ import 'package:go_router/go_router.dart';
 import 'package:habit_note/core/presentation/home_page.dart';
 import 'package:habit_note/core/presentation/splash_screen_page.dart';
 import 'package:habit_note/core/shared/navigator_service.dart';
-import 'package:habit_note/dependency_injection.dart';
 import 'package:habit_note/features/auth/auth_route.dart';
 import 'package:habit_note/features/auth/presentation/controllers/auth_bloc.dart';
 import 'package:habit_note/features/me/presentation/pages/help_view.dart';
@@ -71,15 +70,15 @@ final goRouter = GoRouter(
       ],
     ),
   ],
-  refreshListenable: sl<AuthBloc>(),
   redirect: (context, state) {
+    if (state.fullPath != NavigatorService.splashScreenPath) return null;
     final authState = context.watch<AuthBloc>().state.status;
-    return switch (authState) {
+    final newPath = switch (authState) {
       AuthStatus.initial => NavigatorService.splashScreenPath,
       AuthStatus.registered => NavigatorService.notesPath,
       AuthStatus.none => NavigatorService.onboardingPath
     };
+    return newPath;
   },
-  initialLocation: NavigatorService.splashScreenPath,
   debugLogDiagnostics: kDebugMode,
 );
