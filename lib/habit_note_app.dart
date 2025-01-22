@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:habit_note/app_router.dart';
 import 'package:habit_note/dependency_injection.dart';
 import 'package:habit_note/features/auth/presentation/controllers/auth_bloc.dart';
+import 'package:habit_note/root_page.dart';
 
 class MainApp extends StatefulWidget {
   const MainApp({super.key});
@@ -17,9 +17,8 @@ class _MainAppState extends State<MainApp> {
     return BlocProvider(
       create: (context) => sl<AuthBloc>()..add(const AuthInitialize()),
       lazy: false,
-      child: MaterialApp.router(
-        title: 'HaBIT_Note',
-        routerConfig: goRouter,
+      child: MaterialApp(
+        title: 'HaBIT Note',
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
           colorScheme: const ColorScheme.light().copyWith(
@@ -40,6 +39,14 @@ class _MainAppState extends State<MainApp> {
                 ),
             labelLarge: TextTheme.of(context).titleLarge?.copyWith(
                   fontSize: 18,
+                  fontWeight: FontWeight.w400,
+                ),
+            titleMedium: TextTheme.of(context).titleLarge?.copyWith(
+                  fontSize: 48,
+                  fontWeight: FontWeight.w400,
+                ),
+            titleSmall: TextTheme.of(context).titleLarge?.copyWith(
+                  fontSize: 36,
                   fontWeight: FontWeight.w400,
                 ),
           ),
@@ -77,20 +84,13 @@ class _MainAppState extends State<MainApp> {
             ),
           ),
         ),
-        builder: (context, child) {
-          return BlocListener<AuthBloc, AuthState>(
-            listenWhen: (previous, current) => current.error != null,
-            listener: (context, state) => ScaffoldMessenger.of(context)
-              ..clearSnackBars()
-              ..showSnackBar(SnackBar(content: Text(state.error!))),
-            child: MediaQuery(
-              data: MediaQuery.of(context).copyWith(
-                textScaler: TextScaler.noScaling,
-              ),
-              child: child!,
-            ),
-          );
-        },
+        home: const RootPage(),
+        builder: (context, child) => MediaQuery(
+          data: MediaQuery.of(context).copyWith(
+            textScaler: TextScaler.noScaling,
+          ),
+          child: child!,
+        ),
       ),
     );
   }

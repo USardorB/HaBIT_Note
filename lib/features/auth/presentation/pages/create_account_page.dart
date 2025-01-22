@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:go_router/go_router.dart';
-import 'package:habit_note/core/shared/navigator_service.dart';
+import 'package:habit_note/core/extensions/build_context.dart';
 import 'package:habit_note/features/auth/presentation/controllers/auth_bloc.dart';
+import 'package:habit_note/features/auth/presentation/pages/log_in_page.dart';
 import 'package:habit_note/features/auth/presentation/widgets/authentication_forum.dart';
 
 class CreateAccountPage extends StatefulWidget {
   const CreateAccountPage({super.key});
-
+  static Route route() => MaterialPageRoute(
+        builder: (context) => const CreateAccountPage(),
+      );
   @override
   State<CreateAccountPage> createState() => _CreateAccountPageState();
 }
@@ -68,7 +70,7 @@ class _CreateAccountPageState extends State<CreateAccountPage> {
             Align(
               alignment: const Alignment(-1, 0),
               child: InkWell(
-                onTap: () => context.push(NavigatorService.loginPath),
+                onTap: () => context.push(LogInPage.route()),
                 child: Text(
                   'Login here',
                   style: TextStyle(

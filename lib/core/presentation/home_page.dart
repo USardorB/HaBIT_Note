@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
+import 'package:habit_note/features/help/presentation/pages/help_page.dart';
+import 'package:habit_note/features/me/presentation/pages/me_view.dart';
+import 'package:habit_note/features/notes/presentation/pages/notes_page.dart';
+import 'package:habit_note/features/ocr/presentation/pages/ocr_page.dart';
 
 class HomePage extends StatefulWidget {
-  final Widget child;
-
-  const HomePage({super.key, required this.child});
+  const HomePage({super.key});
 
   @override
   State<HomePage> createState() => _HomePageState();
@@ -15,19 +16,13 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: widget.child,
+      body: const [NotesPage(), OCRPage(), HelpPage(), MeView()][_index],
       bottomNavigationBar: ClipRRect(
         borderRadius: const BorderRadius.vertical(top: Radius.circular(30)),
         child: NavigationBar(
           backgroundColor: ColorScheme.of(context).secondary,
           indicatorColor: ColorScheme.of(context).secondary.withBlue(250),
-          onDestinationSelected: (value) {
-            if (value == 0) context.go('/notes');
-            if (value == 1) context.go('/ocr');
-            if (value == 2) context.go('/help');
-            if (value == 3) context.go('/me');
-            setState(() => _index = value);
-          },
+          onDestinationSelected: (value) => setState(() => _index = value),
           selectedIndex: _index,
           destinations: const [
             NavigationDestination(

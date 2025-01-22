@@ -25,7 +25,7 @@ void _regOnboarding() {
     () => OnboardingRepositoryImpl(sl()),
   );
   sl.registerLazySingleton(() => GetOnboardingData(sl()));
-  sl.registerLazySingleton(() => OnboardingCubit(sl()));
+  sl.registerFactory(() => OnboardingCubit(sl()));
 }
 
 void _regAuth() {

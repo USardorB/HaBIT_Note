@@ -1,12 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:go_router/go_router.dart';
+import 'package:habit_note/core/extensions/build_context.dart';
 import 'package:habit_note/features/auth/presentation/controllers/auth_bloc.dart';
+import 'package:habit_note/features/auth/presentation/pages/create_account_page.dart';
+import 'package:habit_note/features/auth/presentation/pages/forgot_password_page.dart';
 import 'package:habit_note/features/auth/presentation/widgets/authentication_forum.dart';
 
 class LogInPage extends StatefulWidget {
   const LogInPage({super.key});
-
+  static Route route() => MaterialPageRoute(
+        builder: (context) => const LogInPage(),
+      );
   @override
   State<LogInPage> createState() => _CreateAccountPageState();
 }
@@ -58,7 +62,7 @@ class _CreateAccountPageState extends State<LogInPage> {
             Align(
               alignment: const Alignment(1, 0),
               child: InkWell(
-                onTap: () => context.push('/password'),
+                onTap: () => context.push(ForgotPasswordPage.route()),
                 child: const Text(
                   'Forgot Password ?',
                 ),
@@ -70,9 +74,8 @@ class _CreateAccountPageState extends State<LogInPage> {
               alignment: const Alignment(-1, 0),
               child: InkWell(
                 onTap: () {
-                  if (_forumKey.currentState?.validate() ?? false) {
-                    context.push('/authenticate');
-                  }
+                  if (!(_forumKey.currentState?.validate() ?? false)) return;
+                  context.push(CreateAccountPage.route());
                 },
                 child: Text(
                   'Create an account here',

@@ -5,7 +5,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:habit_note/core/shared/failure.dart';
 import 'package:habit_note/features/auth/data/datasources/auth_remote_data_source.dart';
 import 'package:habit_note/features/auth/data/models/user_model.dart';
-import 'package:habit_note/firebase_options.dart';
+import 'package:habit_note/features/auth/data/datasources/firebase_options.dart';
 
 class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
   @override
