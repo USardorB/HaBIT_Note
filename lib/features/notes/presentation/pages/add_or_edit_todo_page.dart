@@ -18,7 +18,8 @@ class _AddOrEditTODOPageState extends State<AddOrEditTODOPage> {
   late TodoList _allTodos;
   @override
   void initState() {
-    _allTodos = const TodoList();
+    // ignore: prefer_const_constructors
+    _allTodos = TodoList(todos: []);
     _todo = TextEditingController();
     super.initState();
   }
@@ -40,9 +41,7 @@ class _AddOrEditTODOPageState extends State<AddOrEditTODOPage> {
             style: TextTheme.of(context).bodyLarge,
             controller: _todo,
             onSubmitted: (value) {
-              _allTodos.copyWith(
-                todos: [Todo(task: value), ..._allTodos.todos],
-              );
+              _allTodos.todos.add(Todo(task: value));
               _todo.clear();
               setState(() {});
             },

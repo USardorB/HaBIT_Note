@@ -52,6 +52,11 @@ class _MainAppState extends State<MainApp> {
           ),
           appBarTheme: const AppBarTheme(
             iconTheme: IconThemeData(color: Color(0xFFFFB347)),
+            titleTextStyle: TextStyle(
+              fontSize: 36,
+              fontWeight: FontWeight.w600,
+              color: Colors.black,
+            ),
           ),
           elevatedButtonTheme: ElevatedButtonThemeData(
             style: ElevatedButton.styleFrom(

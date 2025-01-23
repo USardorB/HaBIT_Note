@@ -6,7 +6,7 @@ class TodoList {
   const TodoList({
     this.id = 0,
     this.colorId = 0,
-    this.todos = const [],
+    required this.todos,
   });
   TodoList copyWith({
     int? colorId,
