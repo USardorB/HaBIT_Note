@@ -5,8 +5,8 @@ import 'package:habit_note/features/notes/presentation/pages/add_or_edit_todo_pa
 Future<Route?> displayGenericDialog<Route>(
   BuildContext context, {
   DialogUseCases usecase = DialogUseCases.create,
-  Function? doSmth,
-  Function? doSmth1,
+  Future<void> Function()? act1,
+  Future<void> Function()? act2,
 }) {
   return showDialog<Route?>(
     context: context,
@@ -20,7 +20,7 @@ Future<Route?> displayGenericDialog<Route>(
             leading: Icon(usecase.icon1),
             title: Text(usecase.option1),
             onTap: () {
-              if (doSmth != null) doSmth();
+              if (act1 != null) act1();
               Navigator.of(context).pop(usecase.routes?.$1());
             },
           ),
@@ -28,7 +28,7 @@ Future<Route?> displayGenericDialog<Route>(
             leading: Icon(usecase.icon2),
             title: Text(usecase.option2),
             onTap: () {
-              if (doSmth1 != null) doSmth1();
+              if (act2 != null) act2();
               Navigator.of(context).pop(usecase.routes?.$2());
             },
           ),

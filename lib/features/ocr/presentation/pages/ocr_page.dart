@@ -1,6 +1,7 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:habit_note/core/dialogs/generic_dialog.dart';
-import 'package:habit_note/core/extensions/build_context.dart';
 import 'package:image_picker/image_picker.dart';
 
 class OCRPage extends StatefulWidget {
@@ -13,12 +14,6 @@ class OCRPage extends StatefulWidget {
 class _OCRPageState extends State<OCRPage> {
   final ImagePicker _picker = ImagePicker();
   XFile? _image;
-  Future<void> _pickImage(ImageSource source) async {
-    final XFile? pickedImage = await _picker.pickImage(source: source);
-    if (pickedImage != null) {
-      setState(() => _image = pickedImage);
-    }
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -29,16 +24,14 @@ class _OCRPageState extends State<OCRPage> {
         actions: _actions(context),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          displayGenericDialog(
+        onPressed: () async {
+          await displayGenericDialog(
             context,
             usecase: DialogUseCases.import,
-            doSmth: () => _pickImage(ImageSource.gallery),
-            doSmth1: () => _pickImage(ImageSource.camera),
-          ).then(
-            // ignore: use_build_context_synchronously
-            (route) => context.push(route),
+            act1: () async => await _pickImage(ImageSource.camera),
+            act2: () async => await _pickImage(ImageSource.gallery),
           );
+          setState(() {});
         },
         backgroundColor: ColorScheme.of(context).primary,
         shape: const CircleBorder(),
@@ -57,6 +50,18 @@ class _OCRPageState extends State<OCRPage> {
                 decoration: BoxDecoration(
                   border: Border.all(),
                   borderRadius: BorderRadius.circular(30),
+                  image: _image != null
+                      ? DecorationImage(image: FileImage(File(_image!.path)))
+                      : null,
+                ),
+                child: Center(
+                  child: Text(
+                    switch (_image) {
+                      XFile() => '',
+                      null => 'Upload an image\nusing the “+”\nbutton',
+                    },
+                    textAlign: TextAlign.center,
+                  ),
                 ),
               ),
             ),
@@ -68,10 +73,14 @@ class _OCRPageState extends State<OCRPage> {
                   border: Border.all(),
                   borderRadius: BorderRadius.circular(30),
                 ),
-                child: Text(
-                  _image == null
-                      ? 'Click the “Scan Image” button to perform scan'
-                      : 'something',
+                child: Center(
+                  child: Text(
+                    switch (_image) {
+                      XFile() => 'something',
+                      null => 'Click the “Scan Image”\nbutton to perform scan',
+                    },
+                    textAlign: TextAlign.center,
+                  ),
                 ),
               ),
             ),
@@ -84,13 +93,16 @@ class _OCRPageState extends State<OCRPage> {
     );
   }
 
+  Future<void> _pickImage(ImageSource source) async {
+    final XFile? pickedImage = await _picker.pickImage(source: source);
+    if (pickedImage != null) _image = pickedImage;
+  }
+
   Row _buttons(BuildContext context) {
     return Row(
       children: [
         OutlinedButton(
-          onPressed: () {
-            setState(() => _image = null);
-          },
+          onPressed: () => setState(() => _image = null),
           child: Text(
             'Clear Image',
             style: TextTheme.of(context).bodySmall,
