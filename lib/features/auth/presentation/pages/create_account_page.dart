@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:habit_note/core/extensions/build_context.dart';
+import 'package:habit_note/core/l10n/strings.dart';
 import 'package:habit_note/features/auth/presentation/controllers/auth_bloc.dart';
 import 'package:habit_note/features/auth/presentation/pages/log_in_page.dart';
 import 'package:habit_note/features/auth/presentation/widgets/authentication_forum.dart';
@@ -44,7 +45,7 @@ class _CreateAccountPageState extends State<CreateAccountPage> {
     return Scaffold(
       backgroundColor: ColorScheme.of(context).secondary,
       appBar: AppBar(
-        title: const Text('Create Account'),
+        title: Text(Strings.createAccount),
         backgroundColor: ColorScheme.of(context).secondary,
       ),
       body: Padding(
@@ -52,10 +53,10 @@ class _CreateAccountPageState extends State<CreateAccountPage> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            const ListTile(
+            ListTile(
               contentPadding: EdgeInsets.zero,
-              title: Text('Let’s get to know you !'),
-              subtitle: Text('Enter your details to continue'),
+              title: Text(Strings.letsGetToKnowYou),
+              subtitle: Text(Strings.enterYourDetailsToContinue),
             ),
             const Spacer(flex: 1),
             AuthForum(
@@ -66,13 +67,13 @@ class _CreateAccountPageState extends State<CreateAccountPage> {
               rePassword: _rePassword,
             ),
             const Spacer(flex: 1),
-            const Text('Already have an account?'),
+            Text(Strings.alreadyHaveAnAccount),
             Align(
               alignment: const Alignment(-1, 0),
               child: InkWell(
                 onTap: () => context.push(LogInPage.route()),
                 child: Text(
-                  'Login here',
+                  Strings.loginHere,
                   style: TextStyle(
                     fontWeight: FontWeight.w700,
                     decoration: TextDecoration.underline,
@@ -83,20 +84,20 @@ class _CreateAccountPageState extends State<CreateAccountPage> {
               ),
             ),
             const Spacer(flex: 3),
-            const Text.rich(TextSpan(children: [
+            Text.rich(TextSpan(children: [
               TextSpan(
-                text: 'By clicking the “CREATE ACCOUNT” button, you agree to ',
+                text: Strings.byClickingTheCreateAccountButtonYouAgreeTo,
               ),
               TextSpan(
-                text: 'Terms of use ',
-                style: TextStyle(fontWeight: FontWeight.w700),
+                text: Strings.termsOfUse,
+                style: const TextStyle(fontWeight: FontWeight.w700),
               ),
               TextSpan(
-                text: 'and ',
+                text: Strings.and,
               ),
               TextSpan(
-                text: 'Privacy Policy',
-                style: TextStyle(fontWeight: FontWeight.w700),
+                text: Strings.privacyPolicy,
+                style: const TextStyle(fontWeight: FontWeight.w700),
               ),
             ])),
             const Spacer(flex: 1),
@@ -109,7 +110,7 @@ class _CreateAccountPageState extends State<CreateAccountPage> {
                       name: _name.text,
                     ));
               },
-              child: const Text('CREATE ACCOUNT'),
+              child: Text(Strings.createAccount.toUpperCase()),
             ),
             const Spacer(flex: 15),
           ],

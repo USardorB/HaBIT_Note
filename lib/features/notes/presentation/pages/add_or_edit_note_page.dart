@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:habit_note/core/l10n/strings.dart';
 import 'package:habit_note/features/notes/domain/entities/note.dart';
 import 'package:habit_note/features/notes/presentation/widgets/color_plate_bottom_sheet.dart';
 
@@ -34,7 +35,7 @@ class _AddOrEditNotePageState extends State<AddOrEditNotePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Add Note'), actions: _actions(context)),
+      appBar: AppBar(title: Text(Strings.addNote), actions: _actions(context)),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 24),
         child: Column(children: [
@@ -42,7 +43,7 @@ class _AddOrEditNotePageState extends State<AddOrEditNotePage> {
             style: TextTheme.of(context).titleSmall,
             controller: _title,
             decoration: InputDecoration(
-              hintText: 'Title',
+              hintText: Strings.title,
               hintStyle: TextTheme.of(context).titleMedium,
               border: InputBorder.none,
               focusedBorder: InputBorder.none,
@@ -54,7 +55,7 @@ class _AddOrEditNotePageState extends State<AddOrEditNotePage> {
             maxLines: 15,
             controller: _description,
             decoration: InputDecoration(
-              hintText: 'Type something...',
+              hintText: Strings.typeSomething,
               hintStyle: TextTheme.of(context).bodyLarge,
               border: InputBorder.none,
               focusedBorder: InputBorder.none,

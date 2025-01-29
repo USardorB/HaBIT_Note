@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:habit_note/core/l10n/strings.dart';
 
 class SettingsPage extends StatelessWidget {
   const SettingsPage({super.key});
@@ -7,9 +8,8 @@ class SettingsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('OCR'),
-        // TODO make this dynamic/programmatic
-        backgroundColor: Colors.white,
+        title: Text(Strings.ocr),
+        backgroundColor: ColorScheme.of(context).surfaceContainerLow,
         // actions: [
         //   IconButton(
         //     onPressed: () {},

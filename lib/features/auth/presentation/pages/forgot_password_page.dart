@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:habit_note/core/l10n/strings.dart';
 
 class ForgotPasswordPage extends StatefulWidget {
   const ForgotPasswordPage({super.key});
@@ -30,7 +31,7 @@ class _CreateAccountPageState extends State<ForgotPasswordPage> {
     return Scaffold(
       backgroundColor: ColorScheme.of(context).secondary,
       appBar: AppBar(
-        title: const Text('Forgot Password'),
+        title: Text(Strings.forgotPassword),
         backgroundColor: ColorScheme.of(context).secondary,
       ),
       body: Padding(
@@ -38,8 +39,9 @@ class _CreateAccountPageState extends State<ForgotPasswordPage> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            const Text(
-              'Please enter your account’s email address and we will send you a link to reset your password.',
+            Text(
+              Strings
+                  .pleaseEnterYourAccountsEmailAddressAndWeWillSendYouALinkToResetYourPassword,
             ),
             const Spacer(flex: 3),
             TextFormField(
@@ -50,7 +52,7 @@ class _CreateAccountPageState extends State<ForgotPasswordPage> {
               controller: _email,
               validator: _validateEmail,
               decoration: InputDecoration(
-                hintText: 'Email Address',
+                hintText: Strings.emailAddress,
                 prefixIcon: Icon(
                   Icons.email_outlined,
                   color: ColorScheme.of(context).primary,
@@ -60,7 +62,7 @@ class _CreateAccountPageState extends State<ForgotPasswordPage> {
             const Spacer(flex: 12),
             ElevatedButton(
               onPressed: () {},
-              child: const Text('SUBMIT'),
+              child: Text(Strings.submit),
             ),
             const Spacer(flex: 4),
           ],
@@ -70,11 +72,11 @@ class _CreateAccountPageState extends State<ForgotPasswordPage> {
   }
 
   String? _validateEmail(String? value) {
-    if (value == null || value.isEmpty) return 'Please enter an email';
+    if (value == null || value.isEmpty) return Strings.pleaseEnterAnEmail;
     final emailRegex = RegExp(
       r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$',
     );
-    if (!emailRegex.hasMatch(value)) return 'Please enter a valid email';
+    if (!emailRegex.hasMatch(value)) return Strings.pleaseEnterAValidEmail;
     return null; // Valid email
   }
 }

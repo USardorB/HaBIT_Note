@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:habit_note/core/l10n/strings.dart';
 
 class AuthForum extends StatefulWidget {
   final TextEditingController? name;
@@ -45,7 +46,7 @@ class _AuthForumState extends State<AuthForum> {
           controller: widget.email,
           validator: _validateEmail,
           decoration: InputDecoration(
-            hintText: 'Email Address',
+            hintText: Strings.emailAddress,
             prefixIcon: Icon(
               Icons.email_outlined,
               color: ColorScheme.of(context).primary,
@@ -105,11 +106,11 @@ class _AuthForumState extends State<AuthForum> {
   }
 
   String? _validateEmail(String? value) {
-    if (value == null || value.isEmpty) return 'Please enter an email';
+    if (value == null || value.isEmpty) return Strings.pleaseEnterAnEmail;
     final emailRegex = RegExp(
       r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$',
     );
-    if (!emailRegex.hasMatch(value)) return 'Please enter a valid email';
+    if (!emailRegex.hasMatch(value)) return Strings.pleaseEnterAValidEmail;
     return null; // Valid email
   }
 

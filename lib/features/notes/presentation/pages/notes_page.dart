@@ -3,6 +3,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:habit_note/core/const/asset_consts.dart';
 import 'package:habit_note/core/dialogs/generic_dialog.dart';
 import 'package:habit_note/core/extensions/build_context.dart';
+import 'package:habit_note/core/l10n/strings.dart';
 
 class NotesPage extends StatelessWidget {
   const NotesPage({super.key});
@@ -11,7 +12,7 @@ class NotesPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Notes'),
+        title: Text(Strings.notes),
         backgroundColor: ColorScheme.of(context).surfaceContainerLow,
         actions: [
           IconButton(
@@ -29,6 +30,7 @@ class NotesPage extends StatelessWidget {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () => displayGenericDialog(context).then(
+          // ignore: use_build_context_synchronously
           (route) => context.push(route),
         ),
         backgroundColor: ColorScheme.of(context).primary,
@@ -42,8 +44,8 @@ class NotesPage extends StatelessWidget {
           const Spacer(flex: 5),
           SvgPicture.asset(kAssetNoNote),
           const Spacer(),
-          const Text(
-            'Create your first note !',
+          Text(
+            Strings.createYourFirstNote,
             textAlign: TextAlign.center,
           ),
           const Spacer(flex: 5),

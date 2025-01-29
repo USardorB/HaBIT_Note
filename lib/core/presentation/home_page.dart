@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:habit_note/core/l10n/strings.dart';
 import 'package:habit_note/features/help/presentation/pages/help_page.dart';
 import 'package:habit_note/features/me/presentation/pages/me_view.dart';
 import 'package:habit_note/features/notes/presentation/pages/notes_page.dart';
@@ -24,22 +25,22 @@ class _HomePageState extends State<HomePage> {
           indicatorColor: ColorScheme.of(context).secondary.withBlue(250),
           onDestinationSelected: (value) => setState(() => _index = value),
           selectedIndex: _index,
-          destinations: const [
+          destinations: [
             NavigationDestination(
-              icon: Icon(Icons.sticky_note_2_outlined),
-              label: 'Notes',
+              icon: const Icon(Icons.sticky_note_2_outlined),
+              label: Strings.notes,
             ),
             NavigationDestination(
-              icon: Icon(Icons.image_search),
-              label: 'OCR',
+              icon: const Icon(Icons.image_search),
+              label: Strings.ocr,
             ),
             NavigationDestination(
-              icon: Icon(Icons.help_outline),
-              label: 'Help',
+              icon: const Icon(Icons.help_outline),
+              label: Strings.help,
             ),
             NavigationDestination(
-              icon: Icon(Icons.person_outline),
-              label: 'Me',
+              icon: const Icon(Icons.person_outline),
+              label: Strings.me,
             ),
           ],
         ),

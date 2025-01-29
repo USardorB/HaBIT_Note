@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:habit_note/core/l10n/strings.dart';
 
 class OCRView extends StatelessWidget {
   const OCRView({super.key});
@@ -7,9 +8,8 @@ class OCRView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('OCR'),
-        // TODO make this dynamic/programmatic
-        backgroundColor: Colors.white,
+        title: Text(Strings.ocr),
+        backgroundColor: ColorScheme.of(context).surfaceContainerLow,
         actions: [
           IconButton(
             onPressed: () {},
@@ -24,18 +24,18 @@ class OCRView extends StatelessWidget {
           ),
         ],
       ),
-      body: const Column(
+      body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          Spacer(flex: 5),
-          Placeholder(),
-          Spacer(),
+          const Spacer(flex: 5),
+          const Placeholder(),
+          const Spacer(),
           Text(
-            'Create your first note !',
+            Strings.createYourFirstNote,
             textAlign: TextAlign.center,
           ),
-          Spacer(flex: 5),
+          const Spacer(flex: 5),
         ],
       ),
     );

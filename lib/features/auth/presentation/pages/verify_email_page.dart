@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:habit_note/core/l10n/strings.dart';
 
 class VerifyEmailPage extends StatefulWidget {
   const VerifyEmailPage({super.key});
@@ -13,7 +14,7 @@ class _CreateAccountPageState extends State<VerifyEmailPage> {
     return Scaffold(
       backgroundColor: ColorScheme.of(context).secondary,
       appBar: AppBar(
-        title: const Text('Email Verification'),
+        title: Text(Strings.emailVerification),
         backgroundColor: ColorScheme.of(context).secondary,
       ),
       body: Padding(
@@ -21,21 +22,24 @@ class _CreateAccountPageState extends State<VerifyEmailPage> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            const Text(
-              'We have sent you a verification email, please check your mail box. If you have not recieved it yet, you can request it in [seconds]',
+            Text(
+              Strings
+                  .weHaveSentYouAVerificationEmailPleaseCheckYourMailBoxIfYouHaveNotRecievedItYetYouCanRequestItInSeconds(
+                sekund: 0,
+              ),
             ),
             const Spacer(flex: 1),
             Align(
               alignment: const Alignment(1, 0),
               child: TextButton(
                 onPressed: () {},
-                child: const Text('Resend'),
+                child: Text(Strings.resend),
               ),
             ),
             const Spacer(flex: 20),
             ElevatedButton(
               onPressed: () {},
-              child: const Text('Confirm Verification'),
+              child: Text(Strings.confirmVerification),
             ),
             const Spacer(flex: 3),
           ],

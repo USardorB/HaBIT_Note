@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:habit_note/dependency_injection.dart';
@@ -20,9 +21,11 @@ class _MainAppState extends State<MainApp> {
       child: MaterialApp(
         title: 'HaBIT Note',
         debugShowCheckedModeBanner: false,
+        locale: context.locale,
+        supportedLocales: context.supportedLocales,
+        localizationsDelegates: context.localizationDelegates,
         theme: ThemeData(
           colorScheme: const ColorScheme.light().copyWith(
-            // surface: const Color(0xFFF1F1F1),
             primary: const Color(0xFFFFB347),
             outline: const Color(0x88000000),
             surfaceContainerLow: const Color(0xFFFFFFFF),

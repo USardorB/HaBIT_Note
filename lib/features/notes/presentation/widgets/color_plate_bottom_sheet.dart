@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:habit_note/core/const/color_plate.dart';
+import 'package:habit_note/core/l10n/strings.dart';
 
 class ColorPlateBottomSheet extends StatelessWidget {
   const ColorPlateBottomSheet({super.key});
@@ -9,17 +10,17 @@ class ColorPlateBottomSheet extends StatelessWidget {
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
-        const ListTile(
-          contentPadding: EdgeInsets.symmetric(
+        ListTile(
+          contentPadding: const EdgeInsets.symmetric(
             horizontal: 36,
             vertical: 16,
           ),
-          leading: Icon(Icons.delete_outline),
-          title: Text('Delete note'),
+          leading: const Icon(Icons.delete_outline),
+          title: Text(Strings.deleteNote),
         ),
         const Divider(height: 0),
         Text(
-          'Select color',
+          Strings.selectColor,
           style: TextTheme.of(context).bodyLarge,
         ),
         GridView.count(

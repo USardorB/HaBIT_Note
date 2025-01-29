@@ -1,0 +1,43 @@
+key,uz_Uz,uz_Cr,ru_RU,en_US
+habit_note,HaBIT Note,HaBIT Note,HaBIT Note,HaBIT Note
+create_account,Hisob yaratish,Ҳисоб яратиш,Создать аккаунт,Create Account
+lets_get_to_know_you,"Keling, sizni tanishaylik!","Келинг, сизни танишамиз!",Давайте познакомимся!,Let’s get to know you!
+enter_your_details_to_continue,Davom etish uchun ma'lumotlaringizni kiriting,Давом этиш учун маълумотларингизни киритинг,"Введите свои данные, чтобы продолжить",Enter your details to continue
+already_have_an_account,Allaqachon hisobingiz bormi?,Аллақачон ҳисобиңиз бормидир?,Уже есть аккаунт?,Already have an account?
+login_here,Bu yerga kiring,Кириш,Войдите здесь,Login here
+by_clicking_the_create_account_button_you_agree_to,“Hisob yaratish” tugmasini bosish orqali siz,“Ҳисоб яратиш” тугмасини босиш орқали сиз,"Нажав кнопку ""СОЗДАТЬ АККАУНТ"", вы соглашаетесь с","By clicking the “CREATE ACCOUNT” button, you agree to "
+terms_of_use,Foydalanish shartlari,Фойдаланиш шартлари,Условиями использования,Terms of use 
+and,va,ва,и,and 
+privacy_policy,Maxfiylik siyosati,Махфийлик сиёсати,Политикой конфиденциальности,Privacy Policy
+copyright_habit_2021_all_rights_reserved,© Copyright HABIT 2021. Barcha huquqlar himoyalangan,© Copyright HABIT 2021. Бўлган ҳуқуқлар ҳимояланган,© Авторские права HABIT 2021. Все права защищены,© Copyright HABIT 2021. All rights reserved
+forgot_password,Parolni unutdingizmi,Паролни унутдингизми?,Забыли пароль,Forgot Password
+please_enter_your_accounts_email_address_and_we_will_send_you_a_link_to_reset_your_password,"Iltimos, hisobingizning elektron pochta manzilini kiriting va biz sizga parolni tiklash uchun havola yuboramiz.","Илтимос, ҳисобингизнинг электрон почта манзилини киритинг ва биз сизга паролни тиклаш учун ҳавола юборишимиз.","Пожалуйста, введите адрес электронной почты вашей учетной записи, и мы отправим вам ссылку для сброса пароля.",Please enter your account’s email address and we will send you a link to reset your password.
+email_address,Elektron pochta manzili,Электрон почта манзили,Адрес электронной почты,Email Address
+submit,YUBORISH,ЮБОРИШ,ОТПРАВИТЬ,SUBMIT
+please_enter_an_email,"Iltimos, elektron pochta manzilini kiriting","Илтимос, электрон почта манзилини киритинг","Пожалуйста, введите электронную почту",Please enter an email
+please_enter_a_valid_email,"Iltimos, to'g'ri elektron pochta manzilini kiriting","Илтимос, ҳақиқий электрон почта манзилини киритинг","Пожалуйста, введите действующий адрес электронной почты",Please enter a valid email
+log_in,Kirish,Кириш,Войти,Log in
+welcome_back,Yana xush kelibsiz!,Хуш келибсиз!,С возвращением!,Welcome back !
+please_login_with_your_credentials,"Iltimos, ma'lumotlaringiz bilan kirish qiling","Илтимос, кириш маълумотларингиз билан тизимга киринг","Пожалуйста, войдите с вашими учетными данными",Please login with your credentials
+forgot_password,Parolni unutdingizmi?,Паролни унутдингизми?,Забыли пароль?,Forgot Password ?
+create_an_account_here,Hisob yaratish,Ҳисоб яратиш учун бу ерга киринг,Создайте аккаунт здесь,Create an account here
+email_verification,Elektron pochta tasdiqlanishi,Электрон почта тасдиқлаш,Подтверждение электронной почты,Email Verification
+we_have_sent_you_a_verification_email_please_check_your_mail_box_if_you_have_not_recieved_it_yet_you_can_request_it_in_seconds,"Biz sizga tasdiqlash elektron pochtasini yubordik, iltimos, pochtangizni tekshirib ko'ring. Agar hali olmagan bo'lsangiz, {sekund} ichida qayta so'rashingiz mumkin.","Биз сизга тасдиқлаш электрон почтасини юбордик, илтимос, почта қутингизни текшириб кўринг. Агар ҳали олишмаган бўлсангиз, {секундлар} ичида қайта сўрашингиз мумкин.","Мы отправили вам письмо для подтверждения, пожалуйста, проверьте вашу почту. Если вы еще не получили его, вы можете запросить его через {seconds} секунд","We have sent you a verification email, please check your mail box. If you have not recieved it yet, you can request it in {seconds}"
+resend,Qayta yuborish,Қайта юбориш,Отправить повторно,Resend
+confirm_verification,Tasdiqlashni tasdiqlang,Тасдиқлашни тасдиқланг,Подтвердить подтверждение,Confirm Verification
+notes,Izohlar,Эслатмалар,Заметки,Notes
+create_your_first_note,Birinchi izohingizni yarating!,Биринчи эслатмангизни яратинг!,Создайте свою первую заметку!,Create your first note !
+log_out,Chiqish,Чиқиш,Выйти,Log Out
+ocr,OCR,OCR,OCR,OCR
+add_note,Izoh qo'shish,Эслатма қўшиш,Добавить заметку,Add Note
+title,Sarlavha,Сарлавҳа,Заголовок,Title
+type_something,Nimadir yozing...,Нимадир ёзинг...,Введите что-нибудь...,Type something...
+add_todo,ToDo qo'shish,ToDo қўшиш,Добавить ToDo,Add ToDo
+delete_note,Izohni o'chirish,Эслатмани ўчириш,Удалить заметку,Delete note
+select_color,Rangni tanlang,Рангни танланг,Выбрать цвет,Select color
+image_to_text,Rasmga matn,Расмни матнга айлантириш,Изображение в текст,Image to Text
+click_the_scan_image_button_to_perform_scan,Skanerlashni amalga oshirish uchun “Rasmni skanerlash” tugmasini bosing,Сканерлашни амалга ошириш учун “Расмни сканерлаш” тугмасини босинг,"Нажмите кнопку ""Сканировать изображение"", чтобы выполнить сканирование",Click the “Scan Image” button to perform scan
+clear_image,Rasmni tozalash,Расмни тозалаш,Очистить изображение,Clear Image
+welcome_to,XUSH KELIBSIZ,ХУШ КЕЛИБСИЗ,ДОБРО ПОЖАЛОВАТЬ,WELCOME TO
+me,profilm,me,me,me
+help,yordam,help,help,help

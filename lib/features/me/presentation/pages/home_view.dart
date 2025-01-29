@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:habit_note/core/const/asset_consts.dart';
+import 'package:habit_note/core/l10n/strings.dart';
 
 class HomeView extends StatelessWidget {
   const HomeView({super.key});
@@ -9,9 +10,8 @@ class HomeView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Notes'),
-        // TODO make this dynamic/programmatic
-        backgroundColor: Colors.white,
+        title: Text(Strings.notes),
+        backgroundColor: ColorScheme.of(context).surfaceContainerLow,
         actions: [
           IconButton(
             onPressed: () {},
@@ -33,8 +33,8 @@ class HomeView extends StatelessWidget {
           const Spacer(flex: 5),
           SvgPicture.asset(kAssetNoNote),
           const Spacer(),
-          const Text(
-            'Create your first note !',
+          Text(
+            Strings.createYourFirstNote,
             textAlign: TextAlign.center,
           ),
           const Spacer(flex: 5),

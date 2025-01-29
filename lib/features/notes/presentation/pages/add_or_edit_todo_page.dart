@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:habit_note/core/l10n/strings.dart';
 import 'package:habit_note/features/notes/domain/entities/todo.dart';
 import 'package:habit_note/features/notes/presentation/widgets/color_plate_bottom_sheet.dart';
 
@@ -33,7 +34,7 @@ class _AddOrEditTODOPageState extends State<AddOrEditTODOPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Add Note'), actions: _actions(context)),
+      appBar: AppBar(title: Text(Strings.addTodo), actions: _actions(context)),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 24),
         child: Column(children: [
@@ -47,7 +48,7 @@ class _AddOrEditTODOPageState extends State<AddOrEditTODOPage> {
             },
             decoration: InputDecoration(
               prefixIcon: const Icon(Icons.add),
-              hintText: 'Type something...',
+              hintText: Strings.typeSomething,
               hintStyle: TextTheme.of(context).bodyLarge,
               border: InputBorder.none,
               focusedBorder: InputBorder.none,
