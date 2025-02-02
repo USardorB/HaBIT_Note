@@ -13,7 +13,8 @@ enum Failure {
   tokenExpired('Seassion has expired, please re-authenticate'),
   emailInUse('There is already a user with this email'),
   userNotFound('No user is found with the email provided'),
-  weakPassword('Please choose a strong password');
+  weakPassword('Please choose a strong password'),
+  db('Could not create database');
 
   final String msg;
 
