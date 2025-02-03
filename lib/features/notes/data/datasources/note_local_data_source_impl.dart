@@ -1,10 +1,9 @@
-import 'package:dartz/dartz.dart';
-import 'package:habit_note/core/const/db_consts.dart';
+import 'package:habit_note/core/const/db_consts.dart' as consts;
 import 'package:habit_note/core/shared/failure.dart';
 import 'package:habit_note/features/notes/data/datasources/note_local_data_source.dart';
+import 'package:path/path.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:sqflite/sqflite.dart';
-import 'package:sqflite/sqlite_api.dart';
 
 class NoteLocalDataSourceImpl implements NoteLocalDataSource {
   late final Database db;
@@ -50,36 +49,16 @@ class NoteLocalDataSourceImpl implements NoteLocalDataSource {
     try {
       final docPath = await getApplicationDocumentsDirectory();
       db = await openDatabase(
-        '${docPath.path}/$dbName',
+        join(docPath.path, consts.dbName),
         version: 1,
-        onCreate: (db, version) async {
-          await db.execute('''
-              CREATE TABLE notes (
-                id INTEGER PRIMARY KEY AUTOINCREMENT,
-                title TEXT,
-                content TEXT,
-                color INTEGER,
-                isSyncedWithClod INTEGER,
-                createdAt TEXT,
-                updatedAt TEXT
-              )
-            ''');
-
-          await db.execute('''
-              CREATE TABLE todos (
-                id INTEGER PRIMARY KEY AUTOINCREMENT,
-                noteId INTEGER,
-                title TEXT,
-                isDone INTEGER,
-                createdAt TEXT,
-                updatedAt TEXT
-              )
-            ''');
-        },
+        onCreate: (db, version) async => await Future.wait([
+          db.execute(consts.noteTableCreation),
+          db.execute(consts.todosTableCreation),
+          db.execute(consts.todoTableCreation),
+        ]),
       );
-      return Right(db);
     } catch (e) {
-      return const Left(Failure.db);
+      throw Failure.db;
     }
   }
 
