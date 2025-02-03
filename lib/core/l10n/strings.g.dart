@@ -6,10 +6,10 @@ part of 'strings.dart';
 // LocalizationGenerator
 // **************************************************************************
 
-// Generated at: Wed, 29 Jan 2025 17:54:08 +05:00
+// Generated at: Sat, 01 Feb 2025 22:29:15 +05:00
 class Strings {
   static const supportedLocales = [
-    Locale('uz', 'Uz'),
+    Locale('uz', 'UZ'),
     Locale('uz', 'Cr'),
     Locale('ru', 'RU'),
     Locale('en', 'US')
