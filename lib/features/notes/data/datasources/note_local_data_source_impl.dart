@@ -9,9 +9,12 @@ class NoteLocalDataSourceImpl implements NoteLocalDataSource {
   late final Database db;
 
   @override
-  Future<void> createNote() {
-    // TODO: implement createNote
-    throw UnimplementedError();
+  Future<void> createNote() async {
+    try {
+      db.insert(consts.notesTable, values);
+    } catch (e) {
+      rethrow;
+    }
   }
 
   @override
