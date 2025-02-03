@@ -15,7 +15,7 @@ Future<void> main() async {
     supportedLocales: const [
       Locale('en', 'US'),
       Locale('ru', 'RU'),
-      Locale('uz', 'Uz'),
+      Locale('uz', 'UZ'),
       Locale('uz', 'Cr'),
     ],
     path: 'assets/lang/translations.csv',
