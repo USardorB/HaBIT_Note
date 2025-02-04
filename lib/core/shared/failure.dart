@@ -14,6 +14,10 @@ enum Failure {
   emailInUse('There is already a user with this email'),
   userNotFound('No user is found with the email provided'),
   weakPassword('Please choose a strong password'),
+  dbNote('Could not create note'),
+  dbNoteDelete('Could not delete note'),
+  dbTodoDelete('Could not delete todo'),
+  dbTodo('Could not create todo'),
   db('Could not create database');
 
   final String msg;

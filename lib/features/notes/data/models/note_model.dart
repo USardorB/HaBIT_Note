@@ -1,16 +1,19 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-part 'freezeds/note_model.freezed.dart';
-part 'gs/note_model.g.dart';
+import 'package:habit_note/core/const/db_consts.dart' as consts;
+part 'note_model.freezed.dart';
+part 'note_model.g.dart';
 
 @freezed
 class NoteModel with _$NoteModel {
   const factory NoteModel({
-    required String id,
-    required String title,
-    required String description,
-    required bool isSyncedWithClod,
-    required DateTime date,
-    required int color,
+    @JsonKey(name: consts.idColumn) String? id,
+    @JsonKey(name: consts.emailColumn, defaultValue: 'Example@mail.com')
+    String? email,
+    @JsonKey(name: consts.titleColumn) String? title,
+    @JsonKey(name: consts.descriptionColumn) String? description,
+    @JsonKey(name: consts.isSyncedColumn, defaultValue: false) bool? isSynced,
+    @JsonKey(name: consts.dateColumn, defaultValue: null) DateTime? date,
+    @JsonKey(name: consts.colorColumn, defaultValue: 0) int? color,
   }) = _NoteModel;
 
   factory NoteModel.fromJson(Map<String, dynamic> json) =>
