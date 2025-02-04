@@ -157,18 +157,36 @@ class NoteLocalDataSourceImpl implements NoteLocalDataSource {
   @override
   Future<void> updateNote(NoteModel note) async {
     try {
-      await db.update(consts.notesTable, [id, email]);
+      await db.update(
+        consts.notesTable,
+        note.toJson(),
+        where: '${consts.idColumn} = ?',
+        whereArgs: [note.id],
+      );
     } catch (e) {
-      throw Failure.dbTodoDelete;
+      throw Failure.dbTodoUpdate;
     }
   }
 
   @override
   Future<void> updateTodo(TodosModel todo) async {
     try {
-      await db.update(consts.todosTable, [id, email]);
+      await db.update(
+        consts.todosTable,
+        todo.toJson(),
+        where: '${consts.idColumn} = ?',
+        whereArgs: [todo.id],
+      );
+      for (final i in todo.todos) {
+        await db.update(
+          consts.todoTable,
+          i.toJson(),
+          where: '${consts.foreginIdColumn} = ? AND ${consts.idColumn} = ?',
+          whereArgs: [i.todoId, i.id],
+        );
+      }
     } catch (e) {
-      throw Failure.dbTodoDelete;
+      throw Failure.dbTodoUpdate;
     }
   }
 }

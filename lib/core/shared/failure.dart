@@ -16,7 +16,9 @@ enum Failure {
   weakPassword('Please choose a strong password'),
   dbNote('Could not create note'),
   dbNoteDelete('Could not delete note'),
+  dbNoteUpdate('Could not delete note'),
   dbTodoDelete('Could not delete todo'),
+  dbTodoUpdate('Could not delete todo'),
   dbTodo('Could not create todo'),
   db('Could not create database');
 

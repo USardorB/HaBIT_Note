@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of '../todo_model.dart';
+part of 'todo_model.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -20,9 +20,14 @@ TodoModel _$TodoModelFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$TodoModel {
-  String get id => throw _privateConstructorUsedError;
-  String get todo => throw _privateConstructorUsedError;
-  bool get isCompleted => throw _privateConstructorUsedError;
+  @JsonKey(name: consts.idColumn, defaultValue: -1)
+  int? get id => throw _privateConstructorUsedError;
+  @JsonKey(name: consts.foreginIdColumn, defaultValue: -1)
+  int? get todoId => throw _privateConstructorUsedError;
+  @JsonKey(name: consts.titleColumn, defaultValue: 'nothing')
+  String? get todo => throw _privateConstructorUsedError;
+  @JsonKey(name: consts.isCompletedColumn, defaultValue: false)
+  bool? get isCompleted => throw _privateConstructorUsedError;
 
   /// Serializes this TodoModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -39,7 +44,12 @@ abstract class $TodoModelCopyWith<$Res> {
   factory $TodoModelCopyWith(TodoModel value, $Res Function(TodoModel) then) =
       _$TodoModelCopyWithImpl<$Res, TodoModel>;
   @useResult
-  $Res call({String id, String todo, bool isCompleted});
+  $Res call(
+      {@JsonKey(name: consts.idColumn, defaultValue: -1) int? id,
+      @JsonKey(name: consts.foreginIdColumn, defaultValue: -1) int? todoId,
+      @JsonKey(name: consts.titleColumn, defaultValue: 'nothing') String? todo,
+      @JsonKey(name: consts.isCompletedColumn, defaultValue: false)
+      bool? isCompleted});
 }
 
 /// @nodoc
@@ -57,23 +67,28 @@ class _$TodoModelCopyWithImpl<$Res, $Val extends TodoModel>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = null,
-    Object? todo = null,
-    Object? isCompleted = null,
+    Object? id = freezed,
+    Object? todoId = freezed,
+    Object? todo = freezed,
+    Object? isCompleted = freezed,
   }) {
     return _then(_value.copyWith(
-      id: null == id
+      id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as String,
-      todo: null == todo
+              as int?,
+      todoId: freezed == todoId
+          ? _value.todoId
+          : todoId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      todo: freezed == todo
           ? _value.todo
           : todo // ignore: cast_nullable_to_non_nullable
-              as String,
-      isCompleted: null == isCompleted
+              as String?,
+      isCompleted: freezed == isCompleted
           ? _value.isCompleted
           : isCompleted // ignore: cast_nullable_to_non_nullable
-              as bool,
+              as bool?,
     ) as $Val);
   }
 }
@@ -86,7 +101,12 @@ abstract class _$$TodoModelImplCopyWith<$Res>
       __$$TodoModelImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String id, String todo, bool isCompleted});
+  $Res call(
+      {@JsonKey(name: consts.idColumn, defaultValue: -1) int? id,
+      @JsonKey(name: consts.foreginIdColumn, defaultValue: -1) int? todoId,
+      @JsonKey(name: consts.titleColumn, defaultValue: 'nothing') String? todo,
+      @JsonKey(name: consts.isCompletedColumn, defaultValue: false)
+      bool? isCompleted});
 }
 
 /// @nodoc
@@ -102,23 +122,28 @@ class __$$TodoModelImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = null,
-    Object? todo = null,
-    Object? isCompleted = null,
+    Object? id = freezed,
+    Object? todoId = freezed,
+    Object? todo = freezed,
+    Object? isCompleted = freezed,
   }) {
     return _then(_$TodoModelImpl(
-      id: null == id
+      id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as String,
-      todo: null == todo
+              as int?,
+      todoId: freezed == todoId
+          ? _value.todoId
+          : todoId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      todo: freezed == todo
           ? _value.todo
           : todo // ignore: cast_nullable_to_non_nullable
-              as String,
-      isCompleted: null == isCompleted
+              as String?,
+      isCompleted: freezed == isCompleted
           ? _value.isCompleted
           : isCompleted // ignore: cast_nullable_to_non_nullable
-              as bool,
+              as bool?,
     ));
   }
 }
@@ -127,21 +152,31 @@ class __$$TodoModelImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$TodoModelImpl implements _TodoModel {
   const _$TodoModelImpl(
-      {required this.id, required this.todo, required this.isCompleted});
+      {@JsonKey(name: consts.idColumn, defaultValue: -1) this.id,
+      @JsonKey(name: consts.foreginIdColumn, defaultValue: -1) this.todoId,
+      @JsonKey(name: consts.titleColumn, defaultValue: 'nothing') this.todo,
+      @JsonKey(name: consts.isCompletedColumn, defaultValue: false)
+      this.isCompleted});
 
   factory _$TodoModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$TodoModelImplFromJson(json);
 
   @override
-  final String id;
+  @JsonKey(name: consts.idColumn, defaultValue: -1)
+  final int? id;
   @override
-  final String todo;
+  @JsonKey(name: consts.foreginIdColumn, defaultValue: -1)
+  final int? todoId;
   @override
-  final bool isCompleted;
+  @JsonKey(name: consts.titleColumn, defaultValue: 'nothing')
+  final String? todo;
+  @override
+  @JsonKey(name: consts.isCompletedColumn, defaultValue: false)
+  final bool? isCompleted;
 
   @override
   String toString() {
-    return 'TodoModel(id: $id, todo: $todo, isCompleted: $isCompleted)';
+    return 'TodoModel(id: $id, todoId: $todoId, todo: $todo, isCompleted: $isCompleted)';
   }
 
   @override
@@ -150,6 +185,7 @@ class _$TodoModelImpl implements _TodoModel {
         (other.runtimeType == runtimeType &&
             other is _$TodoModelImpl &&
             (identical(other.id, id) || other.id == id) &&
+            (identical(other.todoId, todoId) || other.todoId == todoId) &&
             (identical(other.todo, todo) || other.todo == todo) &&
             (identical(other.isCompleted, isCompleted) ||
                 other.isCompleted == isCompleted));
@@ -157,7 +193,7 @@ class _$TodoModelImpl implements _TodoModel {
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(runtimeType, id, todo, isCompleted);
+  int get hashCode => Object.hash(runtimeType, id, todoId, todo, isCompleted);
 
   /// Create a copy of TodoModel
   /// with the given fields replaced by the non-null parameter values.
@@ -177,19 +213,29 @@ class _$TodoModelImpl implements _TodoModel {
 
 abstract class _TodoModel implements TodoModel {
   const factory _TodoModel(
-      {required final String id,
-      required final String todo,
-      required final bool isCompleted}) = _$TodoModelImpl;
+      {@JsonKey(name: consts.idColumn, defaultValue: -1) final int? id,
+      @JsonKey(name: consts.foreginIdColumn, defaultValue: -1)
+      final int? todoId,
+      @JsonKey(name: consts.titleColumn, defaultValue: 'nothing')
+      final String? todo,
+      @JsonKey(name: consts.isCompletedColumn, defaultValue: false)
+      final bool? isCompleted}) = _$TodoModelImpl;
 
   factory _TodoModel.fromJson(Map<String, dynamic> json) =
       _$TodoModelImpl.fromJson;
 
   @override
-  String get id;
+  @JsonKey(name: consts.idColumn, defaultValue: -1)
+  int? get id;
   @override
-  String get todo;
+  @JsonKey(name: consts.foreginIdColumn, defaultValue: -1)
+  int? get todoId;
   @override
-  bool get isCompleted;
+  @JsonKey(name: consts.titleColumn, defaultValue: 'nothing')
+  String? get todo;
+  @override
+  @JsonKey(name: consts.isCompletedColumn, defaultValue: false)
+  bool? get isCompleted;
 
   /// Create a copy of TodoModel
   /// with the given fields replaced by the non-null parameter values.
