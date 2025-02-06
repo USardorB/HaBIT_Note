@@ -68,7 +68,7 @@ class _CreateAccountPageState extends State<LogInPage> {
               ),
             ),
             const Spacer(flex: 5),
-            Text('Don’t have an account yet ?'),
+            const Text('Don’t have an account yet ?'),
             Align(
               alignment: const Alignment(-1, 0),
               child: InkWell(

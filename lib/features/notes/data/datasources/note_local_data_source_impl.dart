@@ -1,4 +1,3 @@
-import 'package:dartz/dartz.dart';
 import 'package:habit_note/core/const/db_consts.dart' as consts;
 import 'package:habit_note/core/shared/failure.dart';
 import 'package:habit_note/features/notes/data/datasources/note_local_data_source.dart';
@@ -12,7 +11,7 @@ class NoteLocalDataSourceImpl implements NoteLocalDataSource {
   late final Database db;
 
   @override
-  Future<void> createNote(NoteModel note) async {
+  Future<Null> createNote(NoteModel note) async {
     try {
       await db.insert(consts.notesTable, note.toJson());
     } catch (e) {
@@ -21,7 +20,7 @@ class NoteLocalDataSourceImpl implements NoteLocalDataSource {
   }
 
   @override
-  Future<void> createTodo(TodosModel todo) async {
+  Future<Null> createTodo(TodosModel todo) async {
     try {
       await db.insert(consts.todosTable, todo.toJson());
       for (final todo in todo.todos) {
@@ -33,7 +32,7 @@ class NoteLocalDataSourceImpl implements NoteLocalDataSource {
   }
 
   @override
-  Future<void> deleteNote(int id, String email) async {
+  Future<Null> deleteNote(int id, String email) async {
     try {
       final count = await db.delete(
         consts.notesTable,
@@ -47,7 +46,7 @@ class NoteLocalDataSourceImpl implements NoteLocalDataSource {
   }
 
   @override
-  Future<void> deleteNotes() async {
+  Future<Null> deleteNotes() async {
     try {
       await db.delete(consts.notesTable);
     } catch (e) {
@@ -56,7 +55,7 @@ class NoteLocalDataSourceImpl implements NoteLocalDataSource {
   }
 
   @override
-  Future<void> deleteTodo(int id, String email) async {
+  Future<Null> deleteTodo(int id, String email) async {
     try {
       final count = await db.delete(
         consts.todosTable,
@@ -70,7 +69,7 @@ class NoteLocalDataSourceImpl implements NoteLocalDataSource {
   }
 
   @override
-  Future<void> deleteTodos() async {
+  Future<Null> deleteTodos() async {
     try {
       await db.delete(consts.todosTable);
     } catch (e) {
@@ -79,7 +78,7 @@ class NoteLocalDataSourceImpl implements NoteLocalDataSource {
   }
 
   @override
-  Future<void> initialize() async {
+  Future<Null> initialize() async {
     try {
       final docPath = await getApplicationDocumentsDirectory();
       db = await openDatabase(
@@ -155,7 +154,7 @@ class NoteLocalDataSourceImpl implements NoteLocalDataSource {
   }
 
   @override
-  Future<void> updateNote(NoteModel note) async {
+  Future<Null> updateNote(NoteModel note) async {
     try {
       await db.update(
         consts.notesTable,
@@ -169,7 +168,7 @@ class NoteLocalDataSourceImpl implements NoteLocalDataSource {
   }
 
   @override
-  Future<void> updateTodo(TodosModel todo) async {
+  Future<Null> updateTodo(TodosModel todo) async {
     try {
       await db.update(
         consts.todosTable,

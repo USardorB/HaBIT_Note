@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:habit_note/core/l10n/strings.dart';
-import 'package:habit_note/features/notes/domain/entities/todo.dart';
+import 'package:habit_note/features/notes/data/models/models.dart';
 import 'package:habit_note/features/notes/presentation/widgets/color_plate_bottom_sheet.dart';
 
 class AddOrEditTODOPage extends StatefulWidget {
@@ -16,11 +16,11 @@ class AddOrEditTODOPage extends StatefulWidget {
 
 class _AddOrEditTODOPageState extends State<AddOrEditTODOPage> {
   late final TextEditingController _todo;
-  late TodoList _allTodos;
+  late List<TodoModel> _allTodos;
   @override
   void initState() {
     // ignore: prefer_const_constructors
-    _allTodos = TodoList(todos: []);
+    // _allTodos = TodosModel().todos;
     _todo = TextEditingController();
     super.initState();
   }
@@ -35,40 +35,40 @@ class _AddOrEditTODOPageState extends State<AddOrEditTODOPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: Text(Strings.addTodo), actions: _actions(context)),
-      body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 24),
-        child: Column(children: [
-          TextField(
-            style: TextTheme.of(context).bodyLarge,
-            controller: _todo,
-            onSubmitted: (value) {
-              _allTodos.todos.add(Todo(task: value));
-              _todo.clear();
-              setState(() {});
-            },
-            decoration: InputDecoration(
-              prefixIcon: const Icon(Icons.add),
-              hintText: Strings.typeSomething,
-              hintStyle: TextTheme.of(context).bodyLarge,
-              border: InputBorder.none,
-              focusedBorder: InputBorder.none,
-              errorBorder: InputBorder.none,
-              enabledBorder: InputBorder.none,
-            ),
-          ),
-          ...List.generate(_allTodos.todos.length, (index) {
-            return ListTile(
-              leading: Checkbox(
-                value: _allTodos.todos.elementAt(index).isCompleted,
-                onChanged: (value) => setState(() {
-                  _allTodos.todos[index].copyWith(isCompleted: value);
-                }),
-              ),
-              title: Text(_allTodos.todos[index].task),
-            );
-          })
-        ]),
-      ),
+      // body: Padding(
+      //   padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 24),
+      //   child: Column(children: [
+      //     TextField(
+      //       style: TextTheme.of(context).bodyLarge,
+      //       controller: _todo,
+      //       onSubmitted: (value) {
+      //         _allTodos.todos.add(TodoModel());
+      //         _todo.clear();
+      //         setState(() {});
+      //       },
+      //       decoration: InputDecoration(
+      //         prefixIcon: const Icon(Icons.add),
+      //         hintText: Strings.typeSomething,
+      //         hintStyle: TextTheme.of(context).bodyLarge,
+      //         border: InputBorder.none,
+      //         focusedBorder: InputBorder.none,
+      //         errorBorder: InputBorder.none,
+      //         enabledBorder: InputBorder.none,
+      //       ),
+      //     ),
+      //     ...List.generate(_allTodos.todos.length, (index) {
+      //       return ListTile(
+      //         leading: Checkbox(
+      //           value: _allTodos.todos.elementAt(index).isCompleted,
+      //           onChanged: (value) => setState(() {
+      //             _allTodos.todos[index].copyWith(isCompleted: value);
+      //           }),
+      //         ),
+      //         title: Text(_allTodos.todos[index].task),
+      //       );
+      //     })
+      //   ]),
+      // ),
     );
   }
 
