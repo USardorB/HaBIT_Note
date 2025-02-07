@@ -13,13 +13,13 @@ abstract class NotesRepository {
   Future<Either<Failure, Null>> updateNote(NoteModel note);
   Future<Either<Failure, Null>> deleteNote(int id, String email);
   Future<Either<Failure, Null>> deleteNotes();
-  Future<Either<Failure, Null>> createTodo(TodosModel todo);
-  Future<Either<Failure, TodosModel>> readTodo(int id, String email);
-  Future<Either<Failure, List<TodosModel>>> readAllTodos(
+  Future<Either<Failure, Null>> createTodo(TodoModel todo);
+  Future<Either<Failure, TodoModel>> readTodo(int id, String email);
+  Future<Either<Failure, List<TodoModel>>> readAllTodos(
     int? amount,
     String email,
   );
-  Future<Either<Failure, Null>> updateTodo(TodosModel todo);
+  Future<Either<Failure, Null>> updateTodo(TodoModel todo);
   Future<Either<Failure, Null>> deleteTodo(int id, String email);
   Future<Either<Failure, Null>> deleteTodos();
 }

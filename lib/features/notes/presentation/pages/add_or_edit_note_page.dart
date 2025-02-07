@@ -4,10 +4,6 @@ import 'package:habit_note/features/notes/data/models/models.dart';
 import 'package:habit_note/features/notes/presentation/widgets/color_plate_bottom_sheet.dart';
 
 class AddOrEditNotePage extends StatefulWidget {
-  static Route route([NoteModel? note]) => MaterialPageRoute(
-        builder: (context) => AddOrEditNotePage(note: note),
-      );
-
   final NoteModel? note;
   const AddOrEditNotePage({super.key, this.note});
 

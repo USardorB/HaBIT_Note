@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:habit_note/core/extensions/build_context.dart';
-import 'package:habit_note/dependency_injection.dart';
 import 'package:habit_note/features/auth/presentation/pages/create_account_page.dart';
 import 'package:habit_note/features/auth/presentation/pages/log_in_page.dart';
 import 'package:habit_note/features/onboarding/presentation/controllers/onboarding_cubit.dart';
 import 'package:habit_note/features/onboarding/presentation/widgets/page_indicator.dart';
 import 'package:habit_note/features/onboarding/presentation/widgets/page_item.dart';
+import 'package:habit_note/injection.dart';
 
 class OnboardingPage extends StatefulWidget {
   const OnboardingPage({super.key});

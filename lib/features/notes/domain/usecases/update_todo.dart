@@ -10,7 +10,6 @@ class UpdateTodo implements Usecase<Null, TodoModel> {
   UpdateTodo(this._repository);
   @override
   Future<Either<Failure, Null>> call({required TodoModel param}) {
-    // TODO: implement call
-    throw UnimplementedError();
+    return _repository.updateTodo(param);
   }
 }

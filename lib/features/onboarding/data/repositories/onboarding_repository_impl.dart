@@ -3,7 +3,9 @@ import 'package:habit_note/core/shared/failure.dart';
 import 'package:habit_note/features/onboarding/data/datasources/onboarding_local_data_source.dart';
 import 'package:habit_note/features/onboarding/domain/entities/onboarding_item.dart';
 import 'package:habit_note/features/onboarding/domain/repository/onboarding_repository.dart';
+import 'package:injectable/injectable.dart';
 
+@Singleton(as: OnboardingRepository)
 class OnboardingRepositoryImpl implements OnboardingRepository {
   final OnboardingLocalDataSource _localDataSource;
 

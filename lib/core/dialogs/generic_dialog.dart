@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:habit_note/features/notes/presentation/pages/add_or_edit_note_page.dart';
-import 'package:habit_note/features/notes/presentation/pages/add_or_edit_todo_page.dart';
 
 Future<Route?> displayGenericDialog<Route>(
   BuildContext context, {
@@ -21,7 +19,7 @@ Future<Route?> displayGenericDialog<Route>(
             title: Text(usecase.option1),
             onTap: () {
               if (act1 != null) act1();
-              Navigator.of(context).pop(usecase.routes?.$1());
+              Navigator.of(context).pop(0);
             },
           ),
           ListTile(
@@ -29,7 +27,7 @@ Future<Route?> displayGenericDialog<Route>(
             title: Text(usecase.option2),
             onTap: () {
               if (act2 != null) act2();
-              Navigator.of(context).pop(usecase.routes?.$2());
+              Navigator.of(context).pop(1);
             },
           ),
         ],
@@ -45,7 +43,6 @@ enum DialogUseCases {
     title: 'Create',
     option1: 'Add note',
     option2: 'Add to-do',
-    routes: (AddOrEditNotePage.route, AddOrEditTODOPage.route),
   ),
   import(
     icon1: Icons.camera_alt,
@@ -60,7 +57,6 @@ enum DialogUseCases {
   final String title;
   final String option1;
   final String option2;
-  final (Function, Function)? routes;
 
   const DialogUseCases({
     required this.icon1,
@@ -68,6 +64,5 @@ enum DialogUseCases {
     required this.title,
     required this.option1,
     required this.option2,
-    this.routes,
   });
 }

@@ -1,7 +1,9 @@
 import 'package:bloc/bloc.dart';
 import 'package:habit_note/features/onboarding/domain/entities/onboarding_item.dart';
 import 'package:habit_note/features/onboarding/domain/usecases/get_onboarding_data.dart';
+import 'package:injectable/injectable.dart';
 
+@injectable
 class OnboardingCubit extends Cubit<OnboardingCubitState> {
   final GetOnboardingData _getOnboardingData;
   OnboardingCubit(this._getOnboardingData)

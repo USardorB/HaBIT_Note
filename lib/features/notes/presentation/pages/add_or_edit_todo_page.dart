@@ -4,10 +4,6 @@ import 'package:habit_note/features/notes/data/models/models.dart';
 import 'package:habit_note/features/notes/presentation/widgets/color_plate_bottom_sheet.dart';
 
 class AddOrEditTODOPage extends StatefulWidget {
-  static Route route() => MaterialPageRoute(
-        builder: (context) => const AddOrEditTODOPage(),
-      );
-
   const AddOrEditTODOPage({super.key});
 
   @override
@@ -16,7 +12,7 @@ class AddOrEditTODOPage extends StatefulWidget {
 
 class _AddOrEditTODOPageState extends State<AddOrEditTODOPage> {
   late final TextEditingController _todo;
-  late List<TodoModel> _allTodos;
+  late List<TaskModel> _allTodos;
   @override
   void initState() {
     // ignore: prefer_const_constructors

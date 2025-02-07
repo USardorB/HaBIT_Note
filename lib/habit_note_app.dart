@@ -1,8 +1,8 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:habit_note/dependency_injection.dart';
 import 'package:habit_note/features/auth/presentation/controllers/auth_bloc.dart';
+import 'package:habit_note/injection.dart';
 import 'package:habit_note/root_page.dart';
 
 class MainApp extends StatefulWidget {

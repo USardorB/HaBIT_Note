@@ -9,7 +9,6 @@ class DeleteTodo implements Usecase<Null, (int, String)> {
   DeleteTodo(this._repository);
   @override
   Future<Either<Failure, Null>> call({required (int, String) param}) {
-    // TODO: implement call
-    throw UnimplementedError();
+    return _repository.deleteTodo(param.$1, param.$2);
   }
 }

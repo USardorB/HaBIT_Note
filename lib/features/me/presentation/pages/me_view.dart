@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:habit_note/core/l10n/strings.dart';
-import 'package:habit_note/dependency_injection.dart';
 import 'package:habit_note/features/auth/presentation/controllers/auth_bloc.dart';
+import 'package:habit_note/injection.dart';
 
 class MeView extends StatelessWidget {
   const MeView({super.key});

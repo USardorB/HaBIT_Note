@@ -1,7 +1,7 @@
 const String dbName = 'notes.db';
 const String notesTable = 'notes';
-const String todosTable = 'todos';
-const String todoTable = 'todo';
+const String todoTable = 'todos';
+const String taskTable = 'todo';
 const String idColumn = 'id';
 const String foreginIdColumn = 'foreginId';
 const String titleColumn = 'title';
@@ -12,10 +12,10 @@ const String isSyncedColumn = 'isSynced';
 const String colorColumn = 'color';
 const String dateColumn = 'date';
 
-final String queryForTodo = '''SELECT $todosTable.* 
-  FROM $todosTable
-  JOIN $todoTable ON $todosTable.$idColumn = $todoTable.$foreginIdColumn
-  WHERE $todoTable.$foreginIdColumn = ? AND $todosTable.$emailColumn = ?
+final String queryForTodo = '''SELECT $todoTable.* 
+  FROM $todoTable
+  JOIN $taskTable ON $todoTable.$idColumn = $taskTable.$foreginIdColumn
+  WHERE $taskTable.$foreginIdColumn = ? AND $todoTable.$emailColumn = ?
 ''';
 
 const String noteTableCreation = '''CREATE TABLE IF NOT EXISTS $notesTable (
@@ -28,19 +28,19 @@ const String noteTableCreation = '''CREATE TABLE IF NOT EXISTS $notesTable (
     $colorColumn INTEGER NOT NULL
 );''';
 
-const String todosTableCreation = '''CREATE TABLE IF NOT EXISTS $todosTable (
+const String todoTableCreation = '''CREATE TABLE IF NOT EXISTS $todoTable (
     $idColumn INTEGER PRIMARY KEY AUTOINCREMENT,
     $emailColumn TEXT NOT NULL,
-    $todosTable JSON NOT NULL,
+    $taskTable JSON NOT NULL,
     $isSyncedColumn INTEGER NOT NULL,
     $colorColumn INTEGER NOT NULL,
     $dateColumn TEXT NOT NULL
 );''';
 
-const String todoTableCreation = '''CREATE TABLE IF NOT EXISTS $todoTable (
+const String taskTableCreation = '''CREATE TABLE IF NOT EXISTS $taskTable (
     $idColumn INTEGER PRIMARY KEY AUTOINCREMENT,
     $titleColumn TEXT NOT NULL,
     $isCompletedColumn INTEGER NOT NULL,
     $foreginIdColumn TEXT,
-    FOREIGN KEY ($foreginIdColumn) REFERENCES $todosTable($idColumn) ON DELETE CASCADE
+    FOREIGN KEY ($foreginIdColumn) REFERENCES $todoTable($idColumn) ON DELETE CASCADE
 );''';

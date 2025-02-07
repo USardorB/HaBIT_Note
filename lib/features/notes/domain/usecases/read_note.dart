@@ -10,7 +10,6 @@ class ReadNote implements Usecase<NoteModel, (int, String)> {
   ReadNote(this._repository);
   @override
   Future<Either<Failure, NoteModel>> call({required (int, String) param}) {
-    // TODO: implement call
-    throw UnimplementedError();
+    return _repository.readNote(param.$1, param.$2);
   }
 }

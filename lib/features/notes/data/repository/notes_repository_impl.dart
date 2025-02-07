@@ -3,7 +3,9 @@ import 'package:habit_note/core/shared/failure.dart';
 import 'package:habit_note/features/notes/data/datasources/note_local_data_source.dart';
 import 'package:habit_note/features/notes/data/models/models.dart';
 import 'package:habit_note/features/notes/domain/repository/notes_repository.dart';
+import 'package:injectable/injectable.dart';
 
+@Singleton(as: NotesRepository)
 class NotesRepositoryImpl implements NotesRepository {
   final NoteLocalDataSource _localDataSource;
 
@@ -23,7 +25,7 @@ class NotesRepositoryImpl implements NotesRepository {
 
   @override
   Future<Either<Failure, Null>> createTodo(
-    TodosModel todo,
+    TodoModel todo,
   ) async {
     try {
       final resp = await _localDataSource.createTodo(todo);
@@ -103,7 +105,7 @@ class NotesRepositoryImpl implements NotesRepository {
   }
 
   @override
-  Future<Either<Failure, List<TodosModel>>> readAllTodos(
+  Future<Either<Failure, List<TodoModel>>> readAllTodos(
     int? amount,
     String email,
   ) async {
@@ -129,7 +131,7 @@ class NotesRepositoryImpl implements NotesRepository {
   }
 
   @override
-  Future<Either<Failure, TodosModel>> readTodo(
+  Future<Either<Failure, TodoModel>> readTodo(
     int id,
     String email,
   ) async {
@@ -155,7 +157,7 @@ class NotesRepositoryImpl implements NotesRepository {
 
   @override
   Future<Either<Failure, Null>> updateTodo(
-    TodosModel todo,
+    TodoModel todo,
   ) async {
     try {
       final resp = await _localDataSource.updateTodo(todo);

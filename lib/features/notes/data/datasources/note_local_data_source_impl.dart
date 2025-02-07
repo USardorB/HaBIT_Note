@@ -2,11 +2,13 @@ import 'package:habit_note/core/const/db_consts.dart' as consts;
 import 'package:habit_note/core/shared/failure.dart';
 import 'package:habit_note/features/notes/data/datasources/note_local_data_source.dart';
 import 'package:habit_note/features/notes/data/models/note_model.dart';
-import 'package:habit_note/features/notes/data/models/todos_model.dart';
+import 'package:habit_note/features/notes/data/models/todo_model.dart';
+import 'package:injectable/injectable.dart';
 import 'package:path/path.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:sqflite/sqflite.dart';
 
+@Singleton(as: NoteLocalDataSource)
 class NoteLocalDataSourceImpl implements NoteLocalDataSource {
   late final Database db;
 
@@ -20,12 +22,12 @@ class NoteLocalDataSourceImpl implements NoteLocalDataSource {
   }
 
   @override
-  Future<Null> createTodo(TodosModel todo) async {
+  Future<Null> createTodo(TodoModel todo) async {
     try {
-      await db.insert(consts.todosTable, todo.toJson());
-      for (final todo in todo.todos) {
-        await db.insert(consts.todoTable, todo.toJson());
-      }
+      // await db.insert(consts.todosTable, todo.toJson());
+      // for (final todo in todo.todos) {
+      //   await db.insert(consts.todoTable, todo.toJson());
+      // }
     } catch (e) {
       throw Failure.dbNote;
     }
@@ -58,7 +60,7 @@ class NoteLocalDataSourceImpl implements NoteLocalDataSource {
   Future<Null> deleteTodo(int id, String email) async {
     try {
       final count = await db.delete(
-        consts.todosTable,
+        consts.todoTable,
         where: '${consts.idColumn}=? AND ${consts.emailColumn}=?',
         whereArgs: [id, email],
       );
@@ -71,7 +73,7 @@ class NoteLocalDataSourceImpl implements NoteLocalDataSource {
   @override
   Future<Null> deleteTodos() async {
     try {
-      await db.delete(consts.todosTable);
+      await db.delete(consts.todoTable);
     } catch (e) {
       throw Failure.dbTodoDelete;
     }
@@ -86,8 +88,8 @@ class NoteLocalDataSourceImpl implements NoteLocalDataSource {
         version: 1,
         onCreate: (db, version) async => await Future.wait([
           db.execute(consts.noteTableCreation),
-          db.execute(consts.todosTableCreation),
           db.execute(consts.todoTableCreation),
+          db.execute(consts.taskTableCreation),
         ]),
       );
     } catch (e) {
@@ -112,16 +114,16 @@ class NoteLocalDataSourceImpl implements NoteLocalDataSource {
   }
 
   @override
-  Future<List<TodosModel>> readAllTodos(int? amount, String email) async {
+  Future<List<TodoModel>> readAllTodos(int? amount, String email) async {
     try {
       final result = await db.query(
-        consts.todosTable,
+        consts.todoTable,
         limit: amount,
         where: '${consts.emailColumn}=?',
         whereArgs: [email],
       );
 
-      return result.map((json) => TodosModel.fromJson(json)).toList();
+      return result.map((json) => TodoModel.fromJson(json)).toList();
     } catch (e) {
       throw Failure.dbTodoDelete;
     }
@@ -131,7 +133,7 @@ class NoteLocalDataSourceImpl implements NoteLocalDataSource {
   Future<NoteModel> readNote(int id, String email) async {
     try {
       final result = await db.query(
-        consts.todosTable,
+        consts.todoTable,
         limit: 1,
         where: '${consts.emailColumn}=? AND ${consts.idColumn}',
         whereArgs: [email, id],
@@ -144,10 +146,10 @@ class NoteLocalDataSourceImpl implements NoteLocalDataSource {
   }
 
   @override
-  Future<TodosModel> readTodo(int id, String email) async {
+  Future<TodoModel> readTodo(int id, String email) async {
     try {
       final todo = await db.rawQuery(consts.queryForTodo, [id, email]);
-      return TodosModel.fromJson(todo.first);
+      return TodoModel.fromJson(todo.first);
     } catch (e) {
       throw Failure.dbTodoDelete;
     }
@@ -168,22 +170,22 @@ class NoteLocalDataSourceImpl implements NoteLocalDataSource {
   }
 
   @override
-  Future<Null> updateTodo(TodosModel todo) async {
+  Future<Null> updateTodo(TodoModel todo) async {
     try {
-      await db.update(
-        consts.todosTable,
-        todo.toJson(),
-        where: '${consts.idColumn} = ?',
-        whereArgs: [todo.id],
-      );
-      for (final i in todo.todos) {
-        await db.update(
-          consts.todoTable,
-          i.toJson(),
-          where: '${consts.foreginIdColumn} = ? AND ${consts.idColumn} = ?',
-          whereArgs: [i.todoId, i.id],
-        );
-      }
+      // await db.update(
+      //   consts.todosTable,
+      //   todo.toJson(),
+      //   where: '${consts.idColumn} = ?',
+      //   whereArgs: [todo.id],
+      // );
+      // for (final i in todo.todos) {
+      //   await db.update(
+      //     consts.todoTable,
+      //     i.toJson(),
+      //     where: '${consts.foreginIdColumn} = ? AND ${consts.idColumn} = ?',
+      //     whereArgs: [i.todoId, i.id],
+      //   );
+      // }
     } catch (e) {
       throw Failure.dbTodoUpdate;
     }

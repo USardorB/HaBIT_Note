@@ -2,7 +2,9 @@ import 'dart:convert';
 import 'package:flutter/services.dart' show rootBundle;
 import 'package:habit_note/features/onboarding/data/datasources/onboarding_local_data_source.dart';
 import 'package:habit_note/features/onboarding/data/models/onboarding_item.dart';
+import 'package:injectable/injectable.dart';
 
+@Singleton(as: OnboardingLocalDataSource)
 class OnboardingLocalDataSourceImpl implements OnboardingLocalDataSource {
   @override
   Future<List<OnboardingItemModel>> loadOnboardingData() async {

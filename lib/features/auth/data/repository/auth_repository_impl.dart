@@ -3,7 +3,9 @@ import 'package:habit_note/core/shared/failure.dart';
 import 'package:habit_note/features/auth/data/datasources/data_sources.dart';
 import 'package:habit_note/features/auth/domain/entities/user.dart';
 import 'package:habit_note/features/auth/domain/repository/auth_repository.dart';
+import 'package:injectable/injectable.dart';
 
+@Singleton(as: AuthRepository)
 class AuthRepositoryImpl implements AuthRepository {
   final AuthRemoteDataSource _remoteDataSource;
 

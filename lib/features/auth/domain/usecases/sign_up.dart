@@ -3,7 +3,9 @@ import 'package:habit_note/core/shared/failure.dart';
 import 'package:habit_note/core/shared/usecase.dart';
 import 'package:habit_note/features/auth/domain/entities/user.dart';
 import 'package:habit_note/features/auth/domain/repository/auth_repository.dart';
+import 'package:injectable/injectable.dart';
 
+@singleton
 class SignUp implements Usecase<User, (String, String, String)> {
   final AuthRepository _repository;
 

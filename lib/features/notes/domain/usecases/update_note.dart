@@ -10,7 +10,6 @@ class UpdateNote implements Usecase<Null, NoteModel> {
   UpdateNote(this._repository);
   @override
   Future<Either<Failure, Null>> call({required NoteModel param}) {
-    // TODO: implement call
-    throw UnimplementedError();
+    return _repository.updateNote(param);
   }
 }

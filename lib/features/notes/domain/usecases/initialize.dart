@@ -2,13 +2,15 @@ import 'package:dartz/dartz.dart';
 import 'package:habit_note/core/shared/failure.dart';
 import 'package:habit_note/core/shared/usecase.dart';
 import 'package:habit_note/features/notes/domain/repository/notes_repository.dart';
+import 'package:injectable/injectable.dart';
 
-class DeleteNote implements Usecase<Null, (int, String)> {
+@singleton
+class InitializeDB implements Usecase<Null, Null> {
   final NotesRepository _repository;
 
-  DeleteNote(this._repository);
+  const InitializeDB(this._repository);
   @override
-  Future<Either<Failure, Null>> call({required (int, String) param}) {
-    return _repository.deleteNote(param.$1, param.$2);
+  Future<Either<Failure, Null>> call({Null param}) {
+    return _repository.initialize();
   }
 }

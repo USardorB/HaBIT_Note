@@ -6,7 +6,9 @@ import 'package:habit_note/core/shared/failure.dart';
 import 'package:habit_note/features/auth/data/datasources/auth_remote_data_source.dart';
 import 'package:habit_note/features/auth/data/models/user_model.dart';
 import 'package:habit_note/features/auth/data/datasources/firebase_options.dart';
+import 'package:injectable/injectable.dart';
 
+@Singleton(as: AuthRemoteDataSource)
 class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
   @override
   Future<void> deleteAccount() async {
